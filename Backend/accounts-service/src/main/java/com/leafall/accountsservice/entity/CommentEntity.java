@@ -1,5 +1,9 @@
 package com.leafall.accountsservice.entity;
 
+import com.leafall.accountsservice.entity.aware.AuthorAware;
+import com.leafall.accountsservice.entity.aware.TimestampAware;
+import com.leafall.accountsservice.entity.listener.AuthorListener;
+import com.leafall.accountsservice.entity.listener.TimestampListener;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,7 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name = "comments")
 @Data
-public class CommentEntity {
+@EntityListeners({AuthorListener.class, TimestampListener.class})
+public class CommentEntity implements AuthorAware, TimestampAware {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +27,14 @@ public class CommentEntity {
     private PostEntity post;
 
     @Column(name = "created_at", nullable = false)
-    private Date createdAt;
+    private Long createdAt;
 
     @Column(name = "created_by", nullable = true)
-    private Long createdBy;
+    private String createdBy;
 
     @Column(name = "updated_at", nullable = true)
-    private Date updatedAt;
+    private Long updatedAt;
 
     @Column(name = "updated_by", nullable = true)
-    private Long updatedBy;
+    private String updatedBy;
 }

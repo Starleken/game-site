@@ -14,5 +14,5 @@ public class UserResponseDto {
     private String email;
     private String username;
     private UserEntityRole role;
-    private Date createdAt;
+    private Long createdAt;
 }

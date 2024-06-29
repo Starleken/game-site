@@ -12,5 +12,5 @@ public class PostResponseShortDto {
 
     private Long id;
     private String header;
-    private Date createdAt;
+    private Long createdAt;
 }

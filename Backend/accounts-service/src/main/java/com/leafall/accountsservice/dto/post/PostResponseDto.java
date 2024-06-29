@@ -18,8 +18,8 @@ public class PostResponseDto {
     private String header;
     private String content;
     private FileResponseDto image;
-    private Long createdBy;
-    private Date createdAt;
+    private String createdBy;
+    private Long createdAt;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

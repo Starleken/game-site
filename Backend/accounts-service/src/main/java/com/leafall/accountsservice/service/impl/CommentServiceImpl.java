@@ -32,7 +32,6 @@ public class CommentServiceImpl implements CommentService {
 
         var toSave = commentMapper.mapToEntity(createDto);
         toSave.setPost(foundPost);
-        toSave.setCreatedAt(new Date());
 
         var saved = commentRepository.save(toSave);
         return commentMapper.mapToDto(saved);
