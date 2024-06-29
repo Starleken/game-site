@@ -11,6 +11,6 @@ public class CommentResponseDto {
 
     private Long id;
     private String content;
-    private Date createdAt;
-    private Long createdBy;
+    private Long createdAt;
+    private String createdBy;
 }

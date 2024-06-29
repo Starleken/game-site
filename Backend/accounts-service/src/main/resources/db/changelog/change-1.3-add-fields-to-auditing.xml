@@ -1,0 +1,106 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.0.0" author="Starleken">
+        <sql>
+            alter table comments alter column created_at
+                type bigint using extract(EPOCH from created_at);
+
+            alter table comments
+            alter column created_by type varchar using created_by::varchar;
+
+            alter table comments alter column updated_at
+                type bigint using extract(EPOCH from updated_at);
+
+            alter table comments
+            alter column updated_by type varchar using updated_by::varchar;
+        </sql>
+
+        <sql>
+            alter table posts alter column created_at
+                type bigint using extract(EPOCH from created_at);
+
+            alter table posts
+            alter column created_by type varchar using created_by::varchar;
+
+            alter table posts alter column updated_at
+                type bigint using extract(EPOCH from updated_at);
+
+            alter table posts
+            alter column updated_by type varchar using updated_by::varchar;
+        </sql>
+
+        <sql>
+            alter table users alter column created_at
+                type bigint using extract(EPOCH from created_at);
+
+            alter table users
+            alter column created_by type varchar using created_by::varchar;
+
+            alter table users alter column updated_at
+                type bigint using extract(EPOCH from updated_at);
+
+            alter table users
+            alter column updated_by type varchar using updated_by::varchar;
+        </sql>
+
+        <sql>
+            alter table files
+                add created_at bigint not null;
+
+            alter table files
+                add created_by varchar;
+
+            alter table files
+                add updated_at bigint;
+
+            alter table files
+                add updated_by varchar;
+        </sql>
+
+        <sql>
+            alter table games alter column created_at
+                type bigint using extract(EPOCH from created_at);
+
+            alter table games
+            alter column created_by type varchar using created_by::varchar;
+
+            alter table games alter column updated_at
+                type bigint using extract(EPOCH from updated_at);
+
+            alter table games
+            alter column updated_by type varchar using updated_by::varchar;
+        </sql>
+
+        <sql>
+            alter table genres
+                add created_at bigint not null;
+
+            alter table genres
+                add created_by varchar;
+
+            alter table genres
+                add updated_at bigint;
+
+            alter table genres
+                add updated_by varchar;
+        </sql>
+
+        <sql>
+            alter table reviews alter column created_at
+                type bigint using extract(EPOCH from created_at);
+
+            alter table reviews
+            alter column created_by type varchar using created_by::varchar;
+
+            alter table reviews alter column updated_at
+                type bigint using extract(EPOCH from updated_at);
+
+            alter table reviews
+            alter column updated_by type varchar using updated_by::varchar;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

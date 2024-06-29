@@ -48,7 +48,6 @@ public class PostServiceImpl implements PostService {
         var entity = postMapper.mapToEntity(createDto);
         var image = fileService.upload(createDto.getFile());
         entity.setImageId(image.getId());
-        entity.setCreatedAt(new Date());
 
         var saved = postRepository.save(entity);
         var responseDto = postMapper.mapToDto(saved);

@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
         checkIfUniqueFieldsExists(createDto.getEmail(), createDto.getUsername());
 
         var entity = userMapper.mapToEntity(createDto);
-        entity.setCreatedAt(new Date());
         entity.setPassword(encodingService.encode(createDto.getPassword()));
 
         var saved = userRepository.save(entity);

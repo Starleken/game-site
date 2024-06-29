@@ -12,7 +12,6 @@ public abstract class UserEntityUtils {
 
     public static UserEntity generateUser() {
         var entity = new UserEntity();
-        entity.setCreatedAt(new Date());
         entity.setUsername(faker.name().username());
         entity.setEmail(faker.internet().emailAddress());
         entity.setRole(UserEntityRole.USER);

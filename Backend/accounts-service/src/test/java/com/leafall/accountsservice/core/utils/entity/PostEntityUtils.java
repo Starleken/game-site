@@ -13,8 +13,7 @@ public abstract class PostEntityUtils {
         var entity = new PostEntity();
         entity.setImageId(image.getId());
         entity.setHeader(faker.name().title());
-        entity.setCreatedAt(new Date());
-        entity.setContent(faker.lorem().characters());
+        entity.setContent(faker.lorem().paragraph());
 
         return entity;
     }
