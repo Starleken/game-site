@@ -1,0 +1,21 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.0.0" author="Starleken">
+        <sql>
+            alter table images
+                rename column image_url to file_url;
+
+            alter table images
+                rename column source_name to original_file_name;
+
+            alter table images
+                rename to files;
+        </sql>
+    </changeSet>
+
+
+
+</databaseChangeLog>

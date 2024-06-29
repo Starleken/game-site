@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.leafall.accountsservice.core.utils.FakerUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EncodingServiceTest extends BaseIntegrationTest {
 
@@ -23,7 +24,7 @@ public class EncodingServiceTest extends BaseIntegrationTest {
         var encoded = encodingService.encode(password);
 
         //then
-        Assertions.assertNotEquals(password, encoded);
+        assertNotEquals(password, encoded);
     }
 
     @Test
@@ -36,7 +37,7 @@ public class EncodingServiceTest extends BaseIntegrationTest {
         var secEncoded = encodingService.encode(password);
 
         //then
-        Assertions.assertNotEquals(encoded, secEncoded);
+        assertNotEquals(encoded, secEncoded);
     }
 
     @Test
@@ -46,7 +47,7 @@ public class EncodingServiceTest extends BaseIntegrationTest {
         var encoded = encodingService.encode(password);
 
         //when
-        Assertions.assertTrue(encodingService.isMatch(password, encoded));
+        assertTrue(encodingService.isMatch(password, encoded));
 
         //then
     }
@@ -58,7 +59,7 @@ public class EncodingServiceTest extends BaseIntegrationTest {
         var encoded = encodingService.encode(password);
 
         //when
-        Assertions.assertFalse(encodingService
+        assertFalse(encodingService
                 .isMatch("Fake" + password, encoded));
 
         //then

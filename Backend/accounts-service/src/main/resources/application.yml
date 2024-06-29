@@ -11,3 +11,8 @@ spring:
   liquibase:
     change-log: classpath:db/master.xml
     enabled: true
+
+aws:
+  s3:
+    bucket-name: ${BUCKET_NAME}
+    presigned-url-ttl-millis: 1800000

@@ -1,7 +1,9 @@
 package com.leafall.accountsservice.controller;
 
 import com.leafall.accountsservice.dto.user.*;
+import com.leafall.accountsservice.entity.UserEntity;
 import com.leafall.accountsservice.service.UserService;
+import com.leafall.accountsservice.utils.LogUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.leafall.accountsservice.utils.LogUtils.*;
+import static com.leafall.accountsservice.utils.LogUtils.getRequest;
 
 @RestController
 @RequestMapping("/users")
@@ -20,27 +25,27 @@ public class UserController {
     
     @GetMapping
     public ResponseEntity<List<UserResponseShortDto>> findAll() {
-        log.info("Find all users requested");
+        log.info(getRequest(UserEntity.class, "find all"));
         var entities = userService.findAll();
-        log.info("The number of users found: {}", entities.size());
+        log.info(getRequest(UserEntity.class, entities.size()));
 
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
     @GetMapping("/ids")
     public ResponseEntity<List<UserResponseShortDto>> findAllByIds(@RequestBody List<Long> ids) {
-        log.info("Find all by ids requested");
+        log.info(getRequest(UserEntity.class, "find all by ids"));
         var entities = userService.findAllById(ids);
-        log.info("The number of users found: {}", entities.size());
+        log.info(getRequest(UserEntity.class, entities.size()));
 
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> findById(@PathVariable long id) {
-        log.info("Find user by id requested. Id: {}", id);
+        log.info(getRequest(UserEntity.class, "find user by id", "id", id));
         var entity = userService.findById(id);
-        log.info("Found user: {}", entity);
+        log.info(getRequest("User", "found", "Id", id));
 
         return new ResponseEntity<>(entity, HttpStatus.OK);
     }
@@ -49,7 +54,7 @@ public class UserController {
     public ResponseEntity<UserResponseDto> create(@RequestBody UserCreateDto createDto) {
         log.info("User create request: {}", createDto);
         var entity = userService.create(createDto);
-        log.info("Created user: {}", entity);
+        log.info(getResultRequest(UserEntity.class, "created", entity));
 
         return new ResponseEntity<>(entity, HttpStatus.CREATED);
     }
@@ -58,34 +63,34 @@ public class UserController {
     public ResponseEntity<UserResponseDto> update(@RequestBody UserUpdateDto updateDto) {
         log.info("User update request: {}", updateDto);
         var entity = userService.update(updateDto);
-        log.info("Updated user: {}", entity);
+        log.info(getResultRequest(UserEntity.class, "updated", entity));
 
         return new ResponseEntity<>(entity, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id) {
-        log.info("Delete user by id requested. Id: {}", id);
+        log.info(getRequest(UserEntity.class, "delete by id", "Id", id));
         userService.deleteById(id);
-        log.info("Deleted user. id: {}", id);
+        log.info(getResultRequest(UserEntity.class, "deleted", "Id", id));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/password")
     public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordDto passwordDto) {
-        log.info("Change password requested. Id: {}", passwordDto.getId());
+        log.info(getRequest("password", "change", "Id", passwordDto.getId()));
         userService.changePassword(passwordDto);
-        log.info("Password changed. id: {}", passwordDto.getId());
+        log.info(getRequest("password", "changed", "Id", passwordDto.getId()));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/email")
     public ResponseEntity<Void> changeEmail(@RequestBody ChangeEmailDto emailDto) {
-        log.info("Change email requested. Id: {}", emailDto.getId());
+        log.info(getRequest("email", "change", "Id", emailDto.getId()));
         userService.changeEmail(emailDto);
-        log.info("Email changed. id: {}", emailDto.getId());
+        log.info(getRequest("email", "changed", "Id", emailDto.getId()));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

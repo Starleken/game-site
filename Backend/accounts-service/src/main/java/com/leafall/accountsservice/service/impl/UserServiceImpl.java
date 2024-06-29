@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService {
         if (encodingService.isMatch(passwordDto.getOldPassword(), found.getPassword())) {
             found.setPassword(encodingService.encode(passwordDto.getNewPassword()));
             userRepository.save(found);
+            return;
         }
 
         throwIllegalActionException("Passwords don't match");

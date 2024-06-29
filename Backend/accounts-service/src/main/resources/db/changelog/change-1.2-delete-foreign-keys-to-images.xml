@@ -1,0 +1,24 @@
+
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.0.0" author="Starleken">
+        <sql>
+            alter table posts
+                drop constraint fkdt44ngxibfjiwb1w59qd23xmw;
+
+            alter table games
+                drop constraint fkcxcw9kl6r7hdcn7d9eg4nt19r;
+
+            alter table games_images
+                drop constraint fkbtnr9lwwwhab7objburqbdfhh;
+
+            alter table games_images
+                rename to game_images;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
