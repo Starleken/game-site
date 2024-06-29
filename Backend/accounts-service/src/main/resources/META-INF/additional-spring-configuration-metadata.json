@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "aws.s3.bucket-name",
+      "type": "java.lang.String",
+      "description": "Title of aws s3 bucket"
+  }
+] }

@@ -5,5 +5,7 @@
                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:db/changelog/change-1.0-add-initial-schema.xml"/>
+    <include file="classpath:db/changelog/change-1.1-rename-images-to-files.xml"/>
+    <include file="classpath:db/changelog/change-1.2-delete-foreign-keys-to-images.xml"/>
 
 </databaseChangeLog>

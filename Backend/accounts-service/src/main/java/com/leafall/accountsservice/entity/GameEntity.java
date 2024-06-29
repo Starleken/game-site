@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "games")
@@ -21,16 +19,13 @@ public class GameEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "header_image", nullable = true)
-    private ImageEntity headerImage;
+    @Column(name = "header_image")
+    private UUID headerImage;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "games_images",
-        joinColumns = @JoinColumn(name = "game_id"),
-        inverseJoinColumns = @JoinColumn(name = "image_id")
-    )
-    private List<ImageEntity> images = new ArrayList<>();
+    @ElementCollection(targetClass = UUID.class)
+    @CollectionTable(name = "game_images", joinColumns = @JoinColumn(name = "game_id"))
+    @Column(name = "image_id")
+    private Set<UUID> images = new HashSet<>();
 
     @Column(name = "description", nullable = false)
     private String description;

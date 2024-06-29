@@ -8,6 +8,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "posts")
@@ -24,9 +25,8 @@ public class PostEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "image_id", nullable = true)
-    private ImageEntity image;
+    @Column(name = "image_id", nullable = true)
+    private UUID imageId;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

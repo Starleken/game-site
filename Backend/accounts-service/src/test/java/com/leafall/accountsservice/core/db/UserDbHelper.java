@@ -21,10 +21,6 @@ public class UserDbHelper {
     private final UserRepository userRepository;
     private final EncodingService encodingService;
 
-    public void clear() {
-        userRepository.deleteAll();
-    }
-
     public UserEntity saveUser() {
         var generated = generateUser();
         generated.setPassword(encodingService.encode(generated.getPassword()));
@@ -38,8 +34,8 @@ public class UserDbHelper {
     }
 
     public UserEntity saveUser(String password) {
-        var generated = generateUser(password);
-        generated.setPassword(encodingService.encode(generated.getPassword()));
+        var generated = generateUser();
+        generated.setPassword(encodingService.encode(password));
         return userRepository.save(generated);
     }
 

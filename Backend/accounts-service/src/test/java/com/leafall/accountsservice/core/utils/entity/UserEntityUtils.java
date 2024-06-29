@@ -28,11 +28,4 @@ public abstract class UserEntityUtils {
 
         return generated;
     }
-
-    public static UserEntity generateUser(String password) {
-        var generated = generateUser();
-        generated.setPassword(password);
-
-        return generated;
-    }
 }

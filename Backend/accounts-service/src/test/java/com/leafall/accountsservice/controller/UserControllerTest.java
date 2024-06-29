@@ -26,6 +26,7 @@ import java.util.List;
 import static com.leafall.accountsservice.core.utils.FakerUtils.*;
 import static com.leafall.accountsservice.core.utils.dto.UserDtoUtils.*;
 import static com.leafall.accountsservice.core.utils.equals.UserEqualsUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,7 +40,7 @@ public class UserControllerTest extends BaseIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        userDbHelper.clear();
+        dbCleaner.clear();
     }
 
     @Test
@@ -59,7 +60,7 @@ public class UserControllerTest extends BaseIntegrationTest {
                 });
 
         //then
-        Assertions.assertEquals(usersCount, dtos.size());
+        assertEquals(usersCount, dtos.size());
 
     }
 
@@ -111,7 +112,7 @@ public class UserControllerTest extends BaseIntegrationTest {
                 });
 
         //then
-        Assertions.assertEquals(ids.size(), response.size());
+        assertEquals(ids.size(), response.size());
     }
 
     @Test
@@ -151,7 +152,7 @@ public class UserControllerTest extends BaseIntegrationTest {
         var saved = userDbHelper.findById(response.getId());
 
         //then
-        Assertions.assertNotEquals(createDto.getPassword() ,saved.getPassword());
+        assertNotEquals(createDto.getPassword() ,saved.getPassword());
     }
 
     @Test
@@ -282,7 +283,7 @@ public class UserControllerTest extends BaseIntegrationTest {
         var updated = userDbHelper.findById(saved.getId());
 
         //then
-        Assertions.assertTrue(encodingService.isMatch(changeDto.getNewPassword(), updated.getPassword()));
+        assertTrue(encodingService.isMatch(changeDto.getNewPassword(), updated.getPassword()));
     }
 
     @Test
@@ -333,7 +334,7 @@ public class UserControllerTest extends BaseIntegrationTest {
         var updated = userDbHelper.findById(saved.getId());
 
         //then
-        Assertions.assertEquals(changeDto.getNewEmail(), updated.getEmail());
+        assertEquals(changeDto.getNewEmail(), updated.getEmail());
     }
 
     @Test
