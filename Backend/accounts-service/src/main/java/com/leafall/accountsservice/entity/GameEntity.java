@@ -32,6 +32,11 @@ public class GameEntity implements AuthorAware, TimestampAware {
     @Column(name = "image_id")
     private Set<UUID> images = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "game_genres", joinColumns = @JoinColumn(name = "game_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<GenreEntity> genres = new ArrayList<>();
+
     @Column(name = "description", nullable = false)
     private String description;
 
