@@ -1,9 +1,6 @@
 package com.leafall.accountsservice.core.db;
 
-import com.leafall.accountsservice.repository.CommentRepository;
-import com.leafall.accountsservice.repository.FileRepository;
-import com.leafall.accountsservice.repository.PostRepository;
-import com.leafall.accountsservice.repository.UserRepository;
+import com.leafall.accountsservice.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +12,10 @@ public class DbCleaner {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
+    private final GenreRepository genreRepository;
 
     public void clear() {
+        genreRepository.deleteAll();
         commentRepository.deleteAll();
         fileRepository.deleteAll();
         postRepository.deleteAll();
