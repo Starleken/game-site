@@ -1,5 +1,6 @@
 DB_URL: localhost:5432
 DB_USERNAME: postgres
+PORT: 8080
 DB_PASSWORD: 1111
 DB_SCHEMA: leafall
 BUCKET_NAME: leafall-test
