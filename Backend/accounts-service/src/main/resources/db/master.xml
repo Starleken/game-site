@@ -9,5 +9,6 @@
     <include file="classpath:db/changelog/change-1.2-delete-foreign-keys-to-images.xml"/>
     <include file="classpath:db/changelog/change-1.3-add-fields-to-auditing.xml"/>
     <include file="classpath:db/changelog/change-1.4-add-table-game-genres.xml"/>
+    <include file="classpath:db/changelog/change-1.5-add-view-with-game-avg-grade.xml"/>
 
 </databaseChangeLog>

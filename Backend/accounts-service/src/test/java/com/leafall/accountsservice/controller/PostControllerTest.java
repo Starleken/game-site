@@ -60,10 +60,10 @@ public class PostControllerTest extends BaseIntegrationTest {
     void testFindById_happyPath() throws Exception {
         //given
         var commentsCount = 5;
-        var entity = postDbHelper.saveWithComments(commentsCount);
+        var savedPost = postDbHelper.saveWithComments(commentsCount);
 
         //when
-        var mvcResult = mockMvc.perform(get("/posts/{id}", entity.getId()))
+        var mvcResult = mockMvc.perform(get("/posts/{id}", savedPost.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -71,13 +71,13 @@ public class PostControllerTest extends BaseIntegrationTest {
         var dto = objectMapper.readValue(bytes, PostResponseDto.class);
 
         //then
-        equal(entity, dto);
+        equal(savedPost, dto);
         assertEquals(commentsCount, dto.getComments().size());
         assertNotNull(dto.getImage());
     }
 
     @Test
-    void testFindById_whenNotFound_then404() throws Exception {
+    void testFindById_whenPostNotFound_then404() throws Exception {
         //given
         var idToSearch = 1L;
 
@@ -95,7 +95,7 @@ public class PostControllerTest extends BaseIntegrationTest {
 
         //when
         var mvcResult = mockMvc.perform(multipart(POST,"/posts")
-                        .file(getMockMultipartFile(FileServiceTest.class))
+                        .file(getMockMultipartFile(PostControllerTest.class))
                         .contentType(MULTIPART_FORM_DATA)
                         .param("header", createDto.getHeader())
                         .param("content", createDto.getContent()))
@@ -113,8 +113,8 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var entity = postDbHelper.save();
-        var updateDto = generateUpdateDto(entity.getId());
+        var savedPost = postDbHelper.save();
+        var updateDto = generateUpdateDto(savedPost.getId());
 
         //when
         var mvcResult = mockMvc.perform(put("/posts")
@@ -132,7 +132,7 @@ public class PostControllerTest extends BaseIntegrationTest {
     }
 
     @Test
-    void testUpdate_whenNotFound_then404() throws Exception {
+    void testUpdate_whenPostNotFound_then404() throws Exception {
         //given
         var fakeId = 1L;
         var updateDto = generateUpdateDto(fakeId);
@@ -149,24 +149,24 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedEntity = postDbHelper.save();
+        var savedPost = postDbHelper.save();
 
         //when
-        mockMvc.perform(delete("/posts/{id}", savedEntity.getId()))
+        mockMvc.perform(delete("/posts/{id}", savedPost.getId()))
                 .andExpect(status().isOk());
 
         //then
         assertTrue(postDbHelper
-                .findById(savedEntity.getId()).isEmpty());
+                .findById(savedPost.getId()).isEmpty());
     }
 
     @Test
-    void testDeleteById_whenNotFound_then404() throws Exception {
+    void testDeleteById_whenPostNotFound_then404() throws Exception {
         //given
-        var fakeId = 1L;
+        var idToSearch = 1L;
 
         //when
-        mockMvc.perform(delete("/posts/{id}", fakeId))
+        mockMvc.perform(delete("/posts/{id}", idToSearch))
                 .andExpect(status().isNotFound());
 
         //then
@@ -175,8 +175,8 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testChangeImage_happyPath() throws Exception {
         //given
-        var savedEntity = postDbHelper.save();
-        var changeImageDto = generateChangeImageDto(savedEntity.getId());
+        var savedPost = postDbHelper.save();
+        var changeImageDto = generateChangeImageDto(savedPost.getId());
 
         //when
         var result = mockMvc.perform(multipart(PUT, "/posts/image")

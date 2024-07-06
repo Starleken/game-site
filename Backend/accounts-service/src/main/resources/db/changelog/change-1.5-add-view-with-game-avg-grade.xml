@@ -5,15 +5,12 @@
 
     <changeSet id="1.0.0" author="Starleken">
         <sql>
-            create table game_genres
-            (
-                game_id  bigint not null
-                    constraint fk1aiw61fmb5xvhwwmx5xd75anp
-                        references games,
-                genre_id bigint not null
-                    constraint fkbtnr9lwzthab7objburqbdfhh
-                        references genres
-            );
+            CREATE OR REPLACE VIEW game_view AS
+                SELECT g.created_at, g.created_by, header_image, g.id, g.updated_at,
+                        g.updated_by, g.description, g.name, avg(r.grade)
+                FROM games as g join reviews as r
+                                 ON g.id = r.game_id
+                group by g.id
         </sql>
     </changeSet>
 

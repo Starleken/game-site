@@ -17,6 +17,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static com.leafall.accountsservice.utils.ExceptionUtils.*;
@@ -71,6 +73,20 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public List<FileResponseDto> getAllByIds(List<UUID> ids) {
+        var foundFiles = fileRepository.findAllById(ids);
+
+        List<FileResponseDto> dtos = new ArrayList<>();
+        for(var file : foundFiles) {
+            var preSignedUrl = s3Service.generatePreSignedUrl(file.getFileUrl(), bucketName);
+            var dto = fileMapper.mapToDto(file.getId(), preSignedUrl, file.getOriginalFileName());
+            dtos.add(dto);
+        }
+
+        return dtos;
+    }
+
+    @Override
     public FileResponseDto upload(MultipartFile file) {
         var keyName = format("files/%s", randomUUID());
         var originalFileName = file.getOriginalFilename();
@@ -81,5 +97,15 @@ public class FileServiceImpl implements FileService {
 
         var preSigneUrl = s3Service.generatePreSignedUrl(savedEntity.getFileUrl(), bucketName);
         return fileMapper.mapToDto(savedEntity.getId(), preSigneUrl, savedEntity.getOriginalFileName());
+    }
+
+    @Override
+    public List<FileResponseDto> uploadAll(List<MultipartFile> imageFiles) {
+        List<FileResponseDto> dtos = new ArrayList<>();
+        for (var file : imageFiles) {
+            dtos.add(upload(file));
+        }
+
+        return dtos;
     }
 }

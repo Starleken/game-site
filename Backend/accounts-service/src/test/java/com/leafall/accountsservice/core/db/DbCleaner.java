@@ -13,12 +13,16 @@ public class DbCleaner {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final GenreRepository genreRepository;
+    private final GameRepository gameRepository;
+    private final ReviewRepository reviewRepository;
 
     public void clear() {
-        genreRepository.deleteAll();
+        reviewRepository.deleteAll();
         commentRepository.deleteAll();
         fileRepository.deleteAll();
         postRepository.deleteAll();
         userRepository.deleteAll();
+        gameRepository.deleteAll();
+        genreRepository.deleteAll();
     }
 }
