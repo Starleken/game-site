@@ -36,7 +36,7 @@ public class GenreControllerTest extends BaseIntegrationTest {
     void testFindAll_happyPath() throws Exception {
         //given
         var count = 5;
-        var savedEntities = genreDbHelper.saveGenre(count);
+        genreDbHelper.saveGenre(count);
 
         //when
         var mvcResult = mockMvc.perform(get("/genres"))
@@ -91,7 +91,7 @@ public class GenreControllerTest extends BaseIntegrationTest {
     }
 
     @Test
-    void testUpdate_whenNotFound_then404() throws Exception {
+    void testUpdate_whenGenreNotFound_then404() throws Exception {
         //given
         var idToSearch = 5L;
         var updateDto = generateUpdateDto(idToSearch);
@@ -108,18 +108,18 @@ public class GenreControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedEntity = genreDbHelper.saveGenre();
+        var savedGenre = genreDbHelper.saveGenre();
 
         //when
-        mockMvc.perform(delete("/genres/{id}", savedEntity.getId()))
+        mockMvc.perform(delete("/genres/{id}", savedGenre.getId()))
                 .andExpect(status().isOk());
 
         //then
-        assertTrue(genreDbHelper.findById(savedEntity.getId()).isEmpty());
+        assertTrue(genreDbHelper.findById(savedGenre.getId()).isEmpty());
     }
 
     @Test
-    void testDeleteById_whenNotFound_then404() throws Exception {
+    void testDeleteById_whenGenreNotFound_then404() throws Exception {
         //given
         var idToSearch = 5L;
 

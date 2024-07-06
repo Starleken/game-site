@@ -5,9 +5,8 @@ import com.leafall.accountsservice.entity.aware.TimestampAware;
 import com.leafall.accountsservice.entity.listener.AuthorListener;
 import com.leafall.accountsservice.entity.listener.TimestampListener;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import java.util.*;
 
@@ -27,15 +26,22 @@ public class GameEntity implements AuthorAware, TimestampAware {
     @Column(name = "header_image")
     private UUID headerImage;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ElementCollection(targetClass = UUID.class)
     @CollectionTable(name = "game_images", joinColumns = @JoinColumn(name = "game_id"))
     @Column(name = "image_id")
-    private Set<UUID> images = new HashSet<>();
+    private List<UUID> images = new ArrayList<>();
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "game_genres", joinColumns = @JoinColumn(name = "game_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<GenreEntity> genres = new ArrayList<>();
+
+    @Formula("(select v.avg from game_view v where v.id = id)")
+    private Float rating;
 
     @Column(name = "description", nullable = false)
     private String description;

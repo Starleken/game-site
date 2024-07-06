@@ -48,7 +48,7 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testFindAll_happyPath() throws Exception {
         //given
-        int usersCount = 3;
+        var usersCount = 3;
         userDbHelper.saveUsers(usersCount);
 
         //when
@@ -57,22 +57,22 @@ public class UserControllerTest extends BaseIntegrationTest {
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
-        var dtos = objectMapper.readValue(
+        var response = objectMapper.readValue(
                 bytes, new TypeReference<List<UserResponseShortDto>>() {
                 });
 
         //then
-        assertEquals(usersCount, dtos.size());
+        assertEquals(usersCount, response.size());
 
     }
 
     @Test
     void testFindById_happyPath() throws Exception {
         //given
-        var saved = userDbHelper.saveUser();
+        var savedUser = userDbHelper.saveUser();
 
         //when
-        var mvcResult = mockMvc.perform(get("/users/{id}", saved.getId()))
+        var mvcResult = mockMvc.perform(get("/users/{id}", savedUser.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -80,11 +80,11 @@ public class UserControllerTest extends BaseIntegrationTest {
         var response = objectMapper.readValue(bytes, UserResponseDto.class);
 
         //then
-        equal(saved, response);
+        equal(savedUser, response);
     }
 
     @Test
-    void testFindById_whenNotFound_then404() throws Exception {
+    void testFindById_whenUserNotFound_then404() throws Exception {
         //given
         var idToSearch = 4;
 
@@ -196,8 +196,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var saved = userDbHelper.saveUser();
-        var updateDto = generateUpdateDto(saved);
+        var savedUser = userDbHelper.saveUser();
+        var updateDto = generateUpdateDto(savedUser);
 
         //when
         var mvcResult = mockMvc.perform(put("/users")
@@ -216,8 +216,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_whenUserNotFound_then404() throws Exception {
         //given
-        var fakeId = 5L;
-        var updateDto = generateUpdateDto(fakeId);
+        var idToSearch = 5L;
+        var updateDto = generateUpdateDto(idToSearch);
 
         //when
         var mvcResult = mockMvc.perform(put("/users")
@@ -232,8 +232,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_whenUsernameExists_then400() throws Exception {
         //given
-        var saved = userDbHelper.saveUser();
-        var updateDto = generateUpdateDto(saved, saved.getUsername());
+        var savedUser = userDbHelper.saveUser();
+        var updateDto = generateUpdateDto(savedUser, savedUser.getUsername());
 
         //when
         var mvcResult = mockMvc.perform(put("/users")
@@ -248,10 +248,10 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var saved = userDbHelper.saveUser();
+        var savedUser = userDbHelper.saveUser();
 
         //when
-        mockMvc.perform(delete("/users/{id}", saved.getId()))
+        mockMvc.perform(delete("/users/{id}", savedUser.getId()))
                 .andExpect(status().isOk());
 
         //then
@@ -260,10 +260,10 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_whenUserNotFound_then404() throws Exception {
         //given
-        var fakeId = 5L;
+        var idToSearch = 5L;
 
         //when
-        mockMvc.perform(delete("/users/{id}", fakeId))
+        mockMvc.perform(delete("/users/{id}", idToSearch))
                 .andExpect(status().isNotFound());
 
         //then
@@ -273,8 +273,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     void testChangePassword_happyPath() throws Exception {
         //given
         var oldPassword = "oldPassword";
-        var saved = userDbHelper.saveUser(oldPassword);
-        var changeDto = generatePasswordDto(saved, oldPassword);
+        var savedUser = userDbHelper.saveUser(oldPassword);
+        var changeDto = generatePasswordDto(savedUser, oldPassword);
 
         //when
         mockMvc.perform(put("/users/password")
@@ -282,7 +282,7 @@ public class UserControllerTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        var updated = userDbHelper.findById(saved.getId());
+        var updated = userDbHelper.findById(savedUser.getId());
 
         //then
         assertTrue(encodingService.isMatch(changeDto.getNewPassword(), updated.getPassword()));
@@ -292,8 +292,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     void testChangePassword_whenUserNotFound_then404() throws Exception {
         //given
         var oldPassword = "oldPassword";
-        var fakeId = 5L;
-        var changeDto = generatePasswordDto(fakeId, oldPassword);
+        var idToSearch = 5L;
+        var changeDto = generatePasswordDto(idToSearch, oldPassword);
 
         //when
         mockMvc.perform(put("/users/password")
@@ -308,8 +308,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     void testChangePassword_whenPasswordsNotEquals_then400() throws Exception {
         //given
         var oldPassword = "oldPassword";
-        var saved = userDbHelper.saveUser(oldPassword);
-        var changeDto = generatePasswordDto(saved, "Fake " + oldPassword);
+        var savedUser = userDbHelper.saveUser(oldPassword);
+        var changeDto = generatePasswordDto(savedUser, "Fake " + oldPassword);
 
         //when
         mockMvc.perform(put("/users/password")
@@ -324,8 +324,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     void testChangeEmail_happyPath() throws Exception {
         //given
         var newEmail = "starleken@mail.ru";
-        var saved = userDbHelper.saveUser();
-        var changeDto = generateEmailDto(saved, newEmail);
+        var savedUser = userDbHelper.saveUser();
+        var changeDto = generateEmailDto(savedUser, newEmail);
 
         //when
         mockMvc.perform(put("/users/email")
@@ -333,7 +333,7 @@ public class UserControllerTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        var updated = userDbHelper.findById(saved.getId());
+        var updated = userDbHelper.findById(savedUser.getId());
 
         //then
         assertEquals(changeDto.getNewEmail(), updated.getEmail());
@@ -343,8 +343,8 @@ public class UserControllerTest extends BaseIntegrationTest {
     void testChangeEmail_whenUserNotFound_then404() throws Exception {
         //given
         var newEmail = "starleken@mail.ru";
-        var fakeId = 5L;
-        var changeDto = generateEmailDto(fakeId, newEmail);
+        var idToSearch = 5L;
+        var changeDto = generateEmailDto(idToSearch, newEmail);
 
         //when
         mockMvc.perform(put("/users/email")
@@ -358,9 +358,9 @@ public class UserControllerTest extends BaseIntegrationTest {
     @Test
     void testChangeEmail_whenEmailExists_then400() throws Exception {
         //given
-        var saved = userDbHelper.saveUser();
-        var toUpdate = userDbHelper.saveUser();
-        var changeDto = generateEmailDto(toUpdate, saved.getEmail());
+        var savedUser = userDbHelper.saveUser();
+        var userToUpdate = userDbHelper.saveUser();
+        var changeDto = generateEmailDto(userToUpdate, savedUser.getEmail());
 
         //when
         mockMvc.perform(put("/users/email")

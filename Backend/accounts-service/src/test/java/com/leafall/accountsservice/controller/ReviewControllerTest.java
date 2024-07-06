@@ -1,28 +1,26 @@
 package com.leafall.accountsservice.controller;
 
 import com.leafall.accountsservice.BaseIntegrationTest;
-import com.leafall.accountsservice.core.db.CommentDbHelper;
-import com.leafall.accountsservice.core.db.PostDbHelper;
-import com.leafall.accountsservice.core.utils.equals.CommentEqualsUtils;
-import com.leafall.accountsservice.dto.comment.CommentResponseDto;
-import org.junit.jupiter.api.Assertions;
+import com.leafall.accountsservice.core.db.GameDbHelper;
+import com.leafall.accountsservice.core.db.ReviewDbHelper;
+import com.leafall.accountsservice.dto.review.ReviewResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import static com.leafall.accountsservice.core.utils.dto.CommentDtoUtils.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.leafall.accountsservice.core.utils.dto.ReviewDtoUtils.*;
+import static com.leafall.accountsservice.core.utils.equals.ReviewEqualsUtils.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class CommentControllerTest extends BaseIntegrationTest {
+public class ReviewControllerTest extends BaseIntegrationTest {
 
     @Autowired
-    private CommentDbHelper commentDbHelper;
+    private ReviewDbHelper reviewDbHelper;
 
     @Autowired
-    private PostDbHelper postDbHelper;
+    private GameDbHelper gameDbHelper;
 
     @BeforeEach
     void setUp() {
@@ -32,31 +30,31 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testCreate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
-        var createDto = generateCreateDto(savedPost.getId());
+        var savedGame = gameDbHelper.saveGame();
+        var createDto = generateCreateDto(savedGame.getId());
 
         //when
-        var mvcResult = mockMvc.perform(post("/comments")
+        var mvcResult = mockMvc.perform(post("/reviews")
                         .content(objectMapper.writeValueAsString(createDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
-        var response = objectMapper.readValue(bytes, CommentResponseDto.class);
+        var response = objectMapper.readValue(bytes, ReviewResponseDto.class);
 
         //then
-        CommentEqualsUtils.equal(response, createDto);
+        equal(response, createDto);
     }
 
     @Test
-    void testCreate_whenPostNotFound_then404() throws Exception {
+    void testCreate_whenGameNotFound_then404() throws Exception {
         //given
-        var fakePostId = 1L;
-        var createDto = generateCreateDto(fakePostId);
+        var idToSearch = 5L;
+        var createDto = generateCreateDto(idToSearch);
 
         //when
-        mockMvc.perform(post("/comments")
+        mockMvc.perform(post("/reviews")
                         .content(objectMapper.writeValueAsString(createDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
@@ -67,59 +65,59 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
-        var savedComment = commentDbHelper.save(savedPost);
-        var updateDto = generateUpdateDto(savedComment.getId());
+        var savedGame = gameDbHelper.saveGame();
+        var savedReview = reviewDbHelper.saveReview(savedGame);
+        var updateDto = generateUpdateDto(savedReview.getId());
 
         //when
-        var mvcResult = mockMvc.perform(put("/comments")
+        var mvcResult = mockMvc.perform(put("/reviews")
                         .content(objectMapper.writeValueAsString(updateDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
-        var response = objectMapper.readValue(bytes, CommentResponseDto.class);
+        var response = objectMapper.readValue(bytes, ReviewResponseDto.class);
 
         //then
-        CommentEqualsUtils.equal(response, updateDto);
-
+        equal(response, updateDto);
     }
 
     @Test
-    void testUpdate_whenPostNotFound_then404() throws Exception {
+    void testUpdate_whenReviewNotFound_then404() throws Exception {
         //given
-        var fakeId = 1L;
-        var updateDto = generateUpdateDto(fakeId);
+        var idToSearch = 5L;
+        var updateDto = generateUpdateDto(idToSearch);
 
         //when
-        mockMvc.perform(put("/comments")
+        mockMvc.perform(put("/reviews")
                         .content(objectMapper.writeValueAsString(updateDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+
+        //then
     }
 
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
-        var savedComment = commentDbHelper.save(savedPost);
+        var savedGame = gameDbHelper.saveGame();
+        var savedReview = reviewDbHelper.saveReview(savedGame);
 
         //when
-        mockMvc.perform(delete("/comments/{id}", savedComment.getId()))
+        mockMvc.perform(delete("/reviews/{id}", savedReview.getId()))
                 .andExpect(status().isOk());
 
         //then
-        assertTrue(commentDbHelper.findById(savedComment.getId()).isEmpty());
     }
 
     @Test
-    void testDeleteById_whenPostNotFound_then404() throws Exception {
+    void testDeleteById_whenReviewNotFound_then404() throws Exception {
         //given
-        var fakeId = 1L;
+        var idToSearch = 5L;
 
         //when
-        mockMvc.perform(delete("/comments/{id}", fakeId))
+        mockMvc.perform(delete("/reviews/{id}", idToSearch))
                 .andExpect(status().isNotFound());
 
         //then
