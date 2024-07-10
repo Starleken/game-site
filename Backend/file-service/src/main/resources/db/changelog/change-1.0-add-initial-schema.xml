@@ -1,0 +1,23 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.0.0" author="Starleken">
+        <sql>
+            create table files
+            (
+                id                 uuid         not null
+                    constraint images_pkey
+                        primary key,
+                file_url           varchar(255) not null,
+                original_file_name varchar(255) not null,
+                created_at         bigint       not null,
+                created_by         varchar,
+                updated_at         bigint,
+                updated_by         varchar
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

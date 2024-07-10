@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2895683b-c30c-4f57-92ca-852469da820d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../file-service/src/main/java/com/example/fileservice/service/S3Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/file/DownloadFileResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/file/FileResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseShortDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseShortDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseShortDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseShortDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/FileEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/FileMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/FileRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../file-service/src/main/java/com/example/fileservice/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/FileServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/GameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/GameServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/CommentControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/CommentControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/PostControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/ReviewControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/ReviewControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/DbCleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/DbCleaner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/FileDbHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/FileDbHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/GameDbHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/GameDbHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/PostDbHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/PostDbHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/FileEntityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/FileEntityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/GameEntityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/GameEntityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/PostEntityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/PostEntityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/service/FileServiceTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ivHIyf22NXc1pvVF5vZ3nXjYVC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "12-create-a-file-service",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Projects/JavaProjects/game-site/Backend/file-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2895683b-c30c-4f57-92ca-852469da820d" name="Changes" comment="" />
+      <created>1720364055507</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720364055507</updated>
+      <workItem from="1720364056565" duration="3668000" />
+      <workItem from="1720368533953" duration="105000" />
+      <workItem from="1720368660313" duration="438000" />
+      <workItem from="1720369212752" duration="2080000" />
+      <workItem from="1720371388422" duration="319000" />
+      <workItem from="1720408994423" duration="607000" />
+      <workItem from="1720409635027" duration="1092000" />
+      <workItem from="1720449248405" duration="75000" />
+      <workItem from="1720509924625" duration="1016000" />
+      <workItem from="1720528767048" duration="216000" />
+      <workItem from="1720541839636" duration="361000" />
+      <workItem from="1720546070071" duration="296000" />
+      <workItem from="1720546440247" duration="584000" />
+      <workItem from="1720575671186" duration="697000" />
+      <workItem from="1720578962982" duration="831000" />
+      <workItem from="1720579811043" duration="694000" />
+      <workItem from="1720581401186" duration="44000" />
+      <workItem from="1720581486758" duration="123000" />
+      <workItem from="1720582057063" duration="517000" />
+      <workItem from="1720582607399" duration="53000" />
+      <workItem from="1720583033493" duration="580000" />
+      <workItem from="1720583620962" duration="33000" />
+      <workItem from="1720583669305" duration="52000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,10 +1,10 @@
 package com.leafall.accountsservice.dto.game;
 
-import com.leafall.accountsservice.dto.file.FileResponseDto;
 import com.leafall.accountsservice.dto.genre.GenreResponseDto;
 import com.leafall.accountsservice.dto.review.ReviewResponseDto;
 import com.leafall.accountsservice.entity.GenreEntity;
 import com.leafall.accountsservice.entity.ReviewEntity;
+import dto.FileResponseDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

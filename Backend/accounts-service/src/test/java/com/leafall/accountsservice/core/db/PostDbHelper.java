@@ -23,14 +23,14 @@ public class PostDbHelper {
     private final FileDbHelper fileDbHelper;
     private final CommentDbHelper commentDbHelper;
 
-    public PostEntity save() {
-        var generated = generate(fileDbHelper.addFile());
+    public PostEntity save(Class testClass) {
+        var generated = generate(fileDbHelper.addFile(testClass));
 
         return repository.save(generated);
     }
 
-    public PostEntity saveWithComments(int commentsCount) {
-        var generated = generate(fileDbHelper.addFile());
+    public PostEntity saveWithComments(int commentsCount, Class testClass) {
+        var generated = generate(fileDbHelper.addFile(testClass));
 
         var savedPost = repository.save(generated);
 
@@ -42,10 +42,10 @@ public class PostDbHelper {
         return savedPost;
     }
 
-    public List<PostEntity> save(int count) {
+    public List<PostEntity> save(int count, Class testClass) {
         List<PostEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = generate(fileDbHelper.addFile());
+            var generated = generate(fileDbHelper.addFile(testClass));
             entities.add(generated);
         }
 

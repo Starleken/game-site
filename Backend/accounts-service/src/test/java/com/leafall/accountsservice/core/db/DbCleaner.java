@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DbCleaner {
 
-    private final FileRepository fileRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
@@ -19,7 +18,6 @@ public class DbCleaner {
     public void clear() {
         reviewRepository.deleteAll();
         commentRepository.deleteAll();
-        fileRepository.deleteAll();
         postRepository.deleteAll();
         userRepository.deleteAll();
         gameRepository.deleteAll();

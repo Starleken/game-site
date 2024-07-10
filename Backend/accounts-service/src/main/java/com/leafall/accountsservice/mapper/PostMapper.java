@@ -8,7 +8,7 @@ import com.leafall.accountsservice.entity.PostEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {FileMapper.class, CommentMapper.class})
+@Mapper(componentModel = "spring", uses = {CommentMapper.class})
 public interface PostMapper {
 
     PostEntity mapToEntity(PostCreateDto createDto);

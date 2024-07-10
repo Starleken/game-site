@@ -1,6 +1,5 @@
 package com.leafall.accountsservice.core.utils;
 
-import com.leafall.accountsservice.service.FileServiceTest;
 import lombok.SneakyThrows;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
