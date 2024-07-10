@@ -30,7 +30,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testCreate_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame();
+        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
         var createDto = generateCreateDto(savedGame.getId());
 
         //when
@@ -65,7 +65,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame();
+        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
         var savedReview = reviewDbHelper.saveReview(savedGame);
         var updateDto = generateUpdateDto(savedReview.getId());
 
@@ -101,7 +101,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame();
+        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
         var savedReview = reviewDbHelper.saveReview(savedGame);
 
         //when

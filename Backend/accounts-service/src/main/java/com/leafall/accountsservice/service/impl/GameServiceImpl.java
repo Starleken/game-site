@@ -1,19 +1,15 @@
 package com.leafall.accountsservice.service.impl;
 
-import com.leafall.accountsservice.dto.file.FileResponseDto;
 import com.leafall.accountsservice.dto.game.*;
 import com.leafall.accountsservice.entity.GameEntity;
 import com.leafall.accountsservice.mapper.GameMapper;
-import com.leafall.accountsservice.repository.FileRepository;
 import com.leafall.accountsservice.repository.GameRepository;
 import com.leafall.accountsservice.repository.GenreRepository;
-import com.leafall.accountsservice.service.FileService;
 import com.leafall.accountsservice.service.GameService;
-import com.leafall.accountsservice.service.GenreService;
-import com.leafall.accountsservice.utils.ExceptionUtils;
+import dto.FileResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import service.FileService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +32,13 @@ public class GameServiceImpl implements GameService {
         var imageIds = entities.stream()
                         .map(GameEntity::getHeaderImage)
                         .toList();
-        var files = fileService.getAllByIds(imageIds);
+        var files = fileService.findAllByIds(imageIds);
 
         List<GameResponseShortDto> dtos = new ArrayList<>();
         for (var entity : entities) {
             var dto = gameMapper.mapToShortDto(entity);
             for (var file : files) {
-                if (file.getId() == entity.getHeaderImage()) {
+                if (file.getId().equals(entity.getHeaderImage())) {
                     dto.setHeaderImage(file);
                 }
             }
@@ -58,7 +54,7 @@ public class GameServiceImpl implements GameService {
                 .orElseThrow(() -> getEntityNotFoundException(GameEntity.class));
 
         var dto = gameMapper.mapToDto(found);
-        dto.setHeaderImage(fileService.getById(found.getHeaderImage()));
+        dto.setHeaderImage(fileService.findById(found.getHeaderImage()));
         return dto;
     }
 
@@ -76,7 +72,7 @@ public class GameServiceImpl implements GameService {
 
         var saved = gameRepository.save(toSave);
         var dto = gameMapper.mapToDto(saved);
-        dto.setHeaderImage(fileService.getById(saved.getHeaderImage()));
+        dto.setHeaderImage(fileService.findById(saved.getHeaderImage()));
         return dto;
     }
 
@@ -90,7 +86,7 @@ public class GameServiceImpl implements GameService {
         var updated = gameRepository.save(toUpdate);
 
         var responseDto = gameMapper.mapToDto(updated);
-        responseDto.setHeaderImage(fileService.getById(updated.getHeaderImage()));
+        responseDto.setHeaderImage(fileService.findById(updated.getHeaderImage()));
         return responseDto;
     }
 

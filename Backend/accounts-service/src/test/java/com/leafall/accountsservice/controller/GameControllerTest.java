@@ -5,14 +5,10 @@ import com.leafall.accountsservice.BaseIntegrationTest;
 import com.leafall.accountsservice.core.db.GameDbHelper;
 import com.leafall.accountsservice.dto.game.GameResponseDto;
 import com.leafall.accountsservice.dto.game.GameResponseShortDto;
-import com.leafall.accountsservice.dto.post.PostResponseDto;
-import com.leafall.accountsservice.service.FileServiceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
@@ -41,7 +37,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     void testFindAll_happyPath() throws Exception {
         //given
         var count = 4;
-        var saved = dbHelper.saveGame(count);
+        var saved = dbHelper.saveGame(count, GameControllerTest.class);
 
         //when
         var mvcResult = mockMvc.perform(get("/games"))
@@ -59,7 +55,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Test
     void testFindById_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame();
+        var saved = dbHelper.saveGame(GameControllerTest.class);
 
         //when
         var mvcResult = mockMvc.perform(get("/games/{id}", saved.getId()))
@@ -77,7 +73,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     void testFindById_whenSaveWithReviews_thenReturnReviews() throws Exception {
         //given
         var reviewsCount = 4;
-        var saved = dbHelper.saveGameWithReviews(reviewsCount);
+        var saved = dbHelper.saveGameWithReviews(reviewsCount, GameControllerTest.class);
 
         //when
         var mvcResult = mockMvc.perform(get("/games/{id}", saved.getId()))
@@ -102,7 +98,7 @@ public class GameControllerTest extends BaseIntegrationTest {
         var createDto = generateCreateDto();
         createDto.setGenres(savedGenresIds);
 
-        MockMultipartHttpServletRequestBuilder multipartRequest = multipart(POST, "/games");
+        var multipartRequest = multipart(POST, "/games");
         multipartRequest.contentType(MULTIPART_FORM_DATA);
 
         for (MockMultipartFile file : getMockMultipartFiles(GameControllerTest.class, imagesCount)) {
@@ -132,7 +128,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame();
+        var saved = dbHelper.saveGame(GameControllerTest.class);
         var updateDto = generateUpdateDto(saved.getId());
         updateDto.setGenres(dbHelper.saveGenres(5));
 
@@ -169,7 +165,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame();
+        var saved = dbHelper.saveGame(GameControllerTest.class);
 
         //when
         mockMvc.perform(delete("/games/{id}", saved.getId()))

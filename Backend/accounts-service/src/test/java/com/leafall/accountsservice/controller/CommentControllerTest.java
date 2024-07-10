@@ -32,7 +32,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testCreate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
+        var savedPost = postDbHelper.save(CommentControllerTest.class);
         var createDto = generateCreateDto(savedPost.getId());
 
         //when
@@ -67,7 +67,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
+        var savedPost = postDbHelper.save(CommentControllerTest.class);
         var savedComment = commentDbHelper.save(savedPost);
         var updateDto = generateUpdateDto(savedComment.getId());
 
@@ -102,7 +102,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save();
+        var savedPost = postDbHelper.save(CommentControllerTest.class);
         var savedComment = commentDbHelper.save(savedPost);
 
         //when

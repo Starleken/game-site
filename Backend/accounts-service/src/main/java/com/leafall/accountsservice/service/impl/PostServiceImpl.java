@@ -4,13 +4,12 @@ import com.leafall.accountsservice.dto.post.*;
 import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.mapper.PostMapper;
 import com.leafall.accountsservice.repository.PostRepository;
-import com.leafall.accountsservice.service.FileService;
 import com.leafall.accountsservice.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import service.FileService;
 
-import java.util.Date;
 import java.util.List;
 
 import static com.leafall.accountsservice.utils.ExceptionUtils.*;
@@ -39,7 +38,7 @@ public class PostServiceImpl implements PostService {
                 .orElseThrow(() -> getEntityNotFoundException(PostEntity.class));
 
         var responseDto = postMapper.mapToDto(found);
-        responseDto.setImage(fileService.getById(found.getImageId()));
+        responseDto.setImage(fileService.findById(found.getImageId()));
         return responseDto;
     }
 
@@ -63,7 +62,7 @@ public class PostServiceImpl implements PostService {
 
         var saved = postRepository.save(found);
         var responseDto = postMapper.mapToDto(saved);
-        responseDto.setImage(fileService.getById(saved.getImageId()));
+        responseDto.setImage(fileService.findById(saved.getImageId()));
         return responseDto;
     }
 
@@ -85,7 +84,7 @@ public class PostServiceImpl implements PostService {
 
         var saved = postRepository.save(found);
         var responseDto = postMapper.mapToDto(saved);
-        responseDto.setImage(fileService.getById(image.getId()));
+        responseDto.setImage(fileService.findById(image.getId()));
         return responseDto;
     }
 }

@@ -1,6 +1,6 @@
 package com.leafall.accountsservice.dto.game;
 
-import com.leafall.accountsservice.dto.file.FileResponseDto;
+import dto.FileResponseDto;
 import lombok.Builder;
 import lombok.Data;
 

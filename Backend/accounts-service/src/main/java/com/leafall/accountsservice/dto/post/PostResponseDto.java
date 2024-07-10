@@ -1,7 +1,7 @@
 package com.leafall.accountsservice.dto.post;
 
 import com.leafall.accountsservice.dto.comment.CommentResponseDto;
-import com.leafall.accountsservice.dto.file.FileResponseDto;
+import dto.FileResponseDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

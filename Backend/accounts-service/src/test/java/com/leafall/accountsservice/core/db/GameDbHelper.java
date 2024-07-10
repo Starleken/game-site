@@ -27,24 +27,24 @@ public class GameDbHelper {
     private final GenreDbHelper genreDbHelper;
     private final FileDbHelper fileDbHelper;
 
-    public GameEntity saveGame() {
-        var generated = generate(fileDbHelper.addFile());
+    public GameEntity saveGame(Class testClass) {
+        var generated = generate(fileDbHelper.addFile(testClass));
 
         return gameRepository.save(generated);
     }
 
-    public List<GameEntity> saveGame(int count) {
+    public List<GameEntity> saveGame(int count, Class testClass) {
         List<GameEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = generate(fileDbHelper.addFile());
+            var generated = generate(fileDbHelper.addFile(testClass));
             entities.add(generated);
         }
 
         return gameRepository.saveAll(entities);
     }
 
-    public GameEntity saveGameWithReviews(int reviewCount) {
-        var savedGame = saveGame();
+    public GameEntity saveGameWithReviews(int reviewCount, Class testClass) {
+        var savedGame = saveGame(testClass);
 
         for (int i = 0; i < reviewCount; i++) {
             reviewRepository.save(generateReview(savedGame));
