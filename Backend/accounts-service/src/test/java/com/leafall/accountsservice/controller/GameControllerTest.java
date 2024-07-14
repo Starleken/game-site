@@ -7,8 +7,11 @@ import com.leafall.accountsservice.dto.game.GameResponseDto;
 import com.leafall.accountsservice.dto.game.GameResponseShortDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
+import service.HistoryService;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import static com.leafall.accountsservice.core.utils.FileUtils.getMockMultipartF
 import static com.leafall.accountsservice.core.utils.dto.GameDtoUtils.*;
 import static com.leafall.accountsservice.core.utils.equals.GameEqualsUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;

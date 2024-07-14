@@ -3,6 +3,7 @@ package com.leafall.accountsservice.entity;
 import com.leafall.accountsservice.entity.aware.AuthorAware;
 import com.leafall.accountsservice.entity.aware.TimestampAware;
 import com.leafall.accountsservice.entity.listener.AuthorListener;
+import com.leafall.accountsservice.entity.listener.HistoryListener;
 import com.leafall.accountsservice.entity.listener.TimestampListener;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "users")
 @Data
-@EntityListeners({AuthorListener.class, TimestampListener.class})
+@EntityListeners({AuthorListener.class, TimestampListener.class, HistoryListener.class})
 public class UserEntity implements AuthorAware, TimestampAware {
 
     @Id
