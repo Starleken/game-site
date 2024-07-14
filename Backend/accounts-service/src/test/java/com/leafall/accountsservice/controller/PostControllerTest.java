@@ -7,8 +7,11 @@ import com.leafall.accountsservice.dto.post.PostResponseDto;
 import com.leafall.accountsservice.dto.post.PostResponseShortDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import service.HistoryService;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import static com.leafall.accountsservice.core.utils.dto.PostDtoUtils.*;
 import static com.leafall.accountsservice.core.utils.equals.PostEqualsUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -26,6 +30,9 @@ public class PostControllerTest extends BaseIntegrationTest {
 
     @Autowired
     private PostDbHelper postDbHelper;
+
+    @MockBean
+    private HistoryService historyService;
 
     @BeforeEach
     void setUp() {
@@ -105,6 +112,24 @@ public class PostControllerTest extends BaseIntegrationTest {
         //then
         equal(createDto, dto);
         assertNotNull(dto.getImage());
+    }
+
+    @Test
+    void testCreate_whenCreate_thenHistoryServiceCalledOnce() throws Exception {
+        //given
+        var createDto = generateCreateDto();
+        var file = getMockMultipartFile(PostControllerTest.class);
+
+        //when
+        mockMvc.perform(multipart(POST,"/posts")
+                        .file(file)
+                        .contentType(MULTIPART_FORM_DATA)
+                        .param("header", createDto.getHeader())
+                        .param("content", createDto.getContent()))
+                .andExpect(status().isCreated());
+
+        //then
+        verify(historyService, times(1)).sendMessage(any(), any(), any());
     }
 
     @Test

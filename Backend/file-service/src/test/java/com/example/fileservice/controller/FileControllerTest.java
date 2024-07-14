@@ -7,10 +7,12 @@ import com.example.fileservice.dto.FileResponseDto;
 import com.example.fileservice.dto.FileUploadDto;
 import com.example.fileservice.dto.FileUploadDtoWrapper;
 import com.example.fileservice.entity.FileEntity;
+import com.example.fileservice.service.FileService;
 import com.example.fileservice.service.S3Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Spy;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequ
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.multipart.MultipartFile;
+import service.HistoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ import static com.example.fileservice.core.utils.FileUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
@@ -41,6 +44,9 @@ public class FileControllerTest extends BaseIntegrationTest {
 
     @MockBean
     private S3Service s3Service;
+
+    @MockBean
+    private HistoryService historyService;
 
     @Test
     void testUpload_happyPath() throws Exception {
@@ -82,6 +88,21 @@ public class FileControllerTest extends BaseIntegrationTest {
 
         //then
         assertEquals(filesCount, response.size());
+    }
+
+    @Test
+    void testUpload_whenUpload_thenHistoryServiceСalledOnce() throws Exception {
+        //given
+        mockS3Service();
+
+        //when
+        mockMvc.perform(multipart(POST,"/files/upload")
+                        .file(getMockMultipartFile(FileControllerTest.class))
+                        .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andExpect(status().isOk());
+
+        //then
+        verify(historyService, times(1)).sendMessage(any(), any(), any());
     }
 
     @Test

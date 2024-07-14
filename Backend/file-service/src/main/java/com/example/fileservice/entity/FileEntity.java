@@ -3,16 +3,23 @@ package com.example.fileservice.entity;
 import com.example.fileservice.entity.aware.AuthorAware;
 import com.example.fileservice.entity.aware.TimestampAware;
 import com.example.fileservice.entity.listener.AuthorListener;
+import com.example.fileservice.entity.listener.HistoryListener;
 import com.example.fileservice.entity.listener.TimestampListener;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "files")
 @Data
-@EntityListeners({AuthorListener.class, TimestampListener.class})
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "files")
+@EntityListeners({HistoryListener.class, AuthorListener.class, TimestampListener.class})
 public class FileEntity implements AuthorAware, TimestampAware {
 
     @Id

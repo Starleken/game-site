@@ -19,3 +19,6 @@ aws:
   s3:
     bucket-name: ${BUCKET_NAME}
     presigned-url-ttl-millis: 1800000
+
+historyservice-starter:
+  kafka-url: localhost:9092

@@ -17,3 +17,6 @@ spring:
 
 fileservice-starter:
   file-service-url: http://127.0.0.1:8081/files
+
+historyservice-starter:
+  kafka-url: localhost:9092
