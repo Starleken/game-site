@@ -60,8 +60,6 @@ public class HistoryListener {
             return historyMapper.mapToHistoryDto((PostEntity) entity);
         } else if (entity instanceof ReviewEntity) {
             return historyMapper.mapToHistoryDto((ReviewEntity) entity);
-        } else if (entity instanceof UserEntity) {
-            return historyMapper.mapToHistoryDto((UserEntity) entity);
         } else if (entity instanceof GameEntity) {
             return historyMapper.mapToHistoryDto((GameEntity) entity);
         }

@@ -5,7 +5,6 @@ import com.leafall.accountsservice.dto.game.GameHistoryDto;
 import com.leafall.accountsservice.dto.genre.GenreHistoryDto;
 import com.leafall.accountsservice.dto.post.PostHistoryDto;
 import com.leafall.accountsservice.dto.review.ReviewHistoryDto;
-import com.leafall.accountsservice.dto.user.UserHistoryDto;
 import com.leafall.accountsservice.entity.*;
 import org.mapstruct.Mapper;
 
@@ -17,5 +16,4 @@ public interface HistoryMapper {
     GenreHistoryDto mapToHistoryDto(GenreEntity entity);
     PostHistoryDto mapToHistoryDto(PostEntity entity);
     ReviewHistoryDto mapToHistoryDto(ReviewEntity entity);
-    UserHistoryDto mapToHistoryDto(UserEntity entity);
 }
