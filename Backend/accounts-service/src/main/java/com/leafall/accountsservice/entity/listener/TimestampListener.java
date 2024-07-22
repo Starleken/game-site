@@ -1,10 +1,10 @@
 package com.leafall.accountsservice.entity.listener;
 
 import com.leafall.accountsservice.entity.aware.TimestampAware;
-import jakarta.persistence.PostPersist;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;

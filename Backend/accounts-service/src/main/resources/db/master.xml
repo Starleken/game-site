@@ -11,5 +11,6 @@
     <include file="classpath:db/changelog/change-1.4-add-table-game-genres.xml"/>
     <include file="classpath:db/changelog/change-1.5-add-view-with-game-avg-grade.xml"/>
     <include file="classpath:db/changelog/change-1.6-delete-files-table.xml"/>
+    <include file="classpath:db/changelog/change-1.7-delete-users-table.xml"/>
 
 </databaseChangeLog>

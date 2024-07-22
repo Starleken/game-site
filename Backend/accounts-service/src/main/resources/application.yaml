@@ -1,0 +1,25 @@
+server:
+  port: ${PORT}
+
+spring:
+  application:
+    name: accounts-service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_URL}/${DB_SCHEMA}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  liquibase:
+    change-log: classpath:db/master.xml
+    enabled: true
+
+fileservice-starter:
+  file-service-url: http://127.0.0.1:8081/files
+
+historyservice-starter:
+  kafka-url: localhost:9092
+
+token-service-starter:
+  secret-key: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w

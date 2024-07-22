@@ -4,6 +4,7 @@ import com.leafall.accountsservice.dto.post.*;
 import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.service.PostService;
 import com.leafall.accountsservice.utils.LogUtils;
+import com.leafall.tokenservice.service.AuthContextHolder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

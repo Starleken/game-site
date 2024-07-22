@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-@SpringBootTest()
+@SpringBootTest
 @ActiveProfiles(profiles = "test")
 @ContextConfiguration(initializers = { PostgresInitializer.class })
 @AutoConfigureMockMvc
