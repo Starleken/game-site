@@ -1,0 +1,24 @@
+server:
+  port: ${PORT}
+
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_URL}/${DB_SCHEMA}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  liquibase:
+    change-log: classpath:db/master.xml
+    enabled: true
+
+jwt:
+  access:
+    secretKey: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w
+    ttlMinutes: 20
+  refresh:
+    secretKey: zL1HB3Pch05Avfynovxrf/kpF9O2m4NCWKJUjEp27s9J2jEG3ifiKCGylaZ8fDeoONSTJP/wAzKawB8F9rOMNg
+    ttlMinutes: 480
