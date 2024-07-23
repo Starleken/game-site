@@ -5,6 +5,7 @@ import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.service.PostService;
 import com.leafall.accountsservice.utils.LogUtils;
 import com.leafall.tokenservice.service.AuthContextHolder;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class PostController {
     }
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<PostResponseDto> create(@ModelAttribute PostCreateDto createDto) {
+    public ResponseEntity<PostResponseDto> create(@ModelAttribute @Valid PostCreateDto createDto) {
         log.info(getRequest(PostEntity.class, "create", createDto));
         var entity = postService.create(createDto);
         log.info(getResultRequest(PostEntity.class, "created", entity));
@@ -52,7 +53,7 @@ public class PostController {
     }
 
     @PutMapping
-    public ResponseEntity<PostResponseDto> update(@RequestBody PostUpdateDto updateDto) {
+    public ResponseEntity<PostResponseDto> update(@RequestBody @Valid PostUpdateDto updateDto) {
         log.info(getRequest(PostEntity.class, "update", updateDto));
         var entity = postService.update(updateDto);
         log.info(getResultRequest(PostEntity.class, "updated", entity));
@@ -70,7 +71,7 @@ public class PostController {
     }
 
     @PutMapping("/image")
-    public ResponseEntity<PostResponseDto> changeImage(@ModelAttribute PostChangeImageDto imageDto) {
+    public ResponseEntity<PostResponseDto> changeImage(@ModelAttribute @Valid PostChangeImageDto imageDto) {
         log.info(getRequest(PostEntity.class, "change image", imageDto));
         var entity = postService.changeImage(imageDto);
         log.info(getResultRequest(PostEntity.class, "image changed", entity));

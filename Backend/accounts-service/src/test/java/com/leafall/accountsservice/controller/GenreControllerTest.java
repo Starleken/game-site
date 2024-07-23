@@ -10,9 +10,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import service.HistoryService;
 
 import java.util.List;
 
@@ -71,6 +73,21 @@ public class GenreControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var createDto = generateCreateDto();
+        createDto.setName("");
+
+        //when
+        mockMvc.perform(post("/genres")
+                        .content(objectMapper.writeValueAsString(createDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testUpdate_happyPath() throws Exception {
         //given
         var savedEntity = genreDbHelper.saveGenre();
@@ -88,6 +105,22 @@ public class GenreControllerTest extends BaseIntegrationTest {
 
         //then
         equal(response, updateDto);
+    }
+
+    @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setName("");
+
+        //when
+        mockMvc.perform(put("/genres")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test

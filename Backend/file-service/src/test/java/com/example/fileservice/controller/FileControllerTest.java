@@ -10,6 +10,7 @@ import com.example.fileservice.entity.FileEntity;
 import com.example.fileservice.service.FileService;
 import com.example.fileservice.service.S3Service;
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
@@ -46,7 +47,7 @@ public class FileControllerTest extends BaseIntegrationTest {
     private S3Service s3Service;
 
     @MockBean
-    private HistoryService historyService;
+    private KafkaProducer kafkaProducer;
 
     @Test
     void testUpload_happyPath() throws Exception {

@@ -32,7 +32,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testCreate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(CommentControllerTest.class);
+        var savedPost = postDbHelper.save();
         var createDto = generateCreateDto(savedPost.getId());
 
         //when
@@ -47,6 +47,22 @@ public class CommentControllerTest extends BaseIntegrationTest {
 
         //then
         CommentEqualsUtils.equal(response, createDto);
+    }
+
+    @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var createDto = generateCreateDto(idToGenerate);
+        createDto.setContent("");
+
+        //when
+        mockMvc.perform(post("/comments")
+                        .content(objectMapper.writeValueAsString(createDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -67,7 +83,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(CommentControllerTest.class);
+        var savedPost = postDbHelper.save();
         var savedComment = commentDbHelper.save(savedPost);
         var updateDto = generateUpdateDto(savedComment.getId());
 
@@ -83,7 +99,22 @@ public class CommentControllerTest extends BaseIntegrationTest {
 
         //then
         CommentEqualsUtils.equal(response, updateDto);
+    }
 
+    @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setContent("");
+
+        //when
+        mockMvc.perform(post("/comments")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -102,7 +133,7 @@ public class CommentControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(CommentControllerTest.class);
+        var savedPost = postDbHelper.save();
         var savedComment = commentDbHelper.save(savedPost);
 
         //when

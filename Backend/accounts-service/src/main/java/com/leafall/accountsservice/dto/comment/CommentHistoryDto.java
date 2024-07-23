@@ -9,6 +9,5 @@ public class CommentHistoryDto {
 
     private Long id;
     private String content;
-
     private String createdBy;
 }

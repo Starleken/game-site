@@ -8,6 +8,7 @@ import com.leafall.accountsservice.entity.GameEntity;
 import com.leafall.accountsservice.entity.GenreEntity;
 import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.service.GameService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,7 @@ public class GameController {
     }
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<GameResponseDto> create(@ModelAttribute GameCreateDto createDto) {
+    public ResponseEntity<GameResponseDto> create(@ModelAttribute @Valid GameCreateDto createDto) {
         log.info(getRequest(GameEntity.class, "create", createDto));
         var result = gameService.create(createDto);
         log.info(getResultRequest(GameEntity.class, "created", result));
@@ -56,7 +57,7 @@ public class GameController {
     }
 
     @PutMapping
-    public ResponseEntity<GameResponseDto> update(@RequestBody GameUpdateDto updateDto) {
+    public ResponseEntity<GameResponseDto> update(@RequestBody @Valid GameUpdateDto updateDto) {
         log.info(getRequest(GameEntity.class, "update", updateDto));
         var result = gameService.update(updateDto);
         log.info(getResultRequest(GameEntity.class, "updated", result));

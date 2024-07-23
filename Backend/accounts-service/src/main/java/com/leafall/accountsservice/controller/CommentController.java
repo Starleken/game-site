@@ -6,6 +6,7 @@ import com.leafall.accountsservice.dto.comment.CommentUpdateDto;
 import com.leafall.accountsservice.entity.CommentEntity;
 import com.leafall.accountsservice.service.CommentService;
 import com.leafall.accountsservice.utils.LogUtils;
+import jakarta.validation.Valid;
 import liquibase.util.LogUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public ResponseEntity<CommentResponseDto> create(@RequestBody CommentCreateDto createDto) {
+    public ResponseEntity<CommentResponseDto> create(@RequestBody @Valid CommentCreateDto createDto) {
         log.info(getRequest(CommentEntity.class, "create", createDto));
         var entity = commentService.create(createDto);
         log.info(getResultRequest(CommentEntity.class, "created", entity));
@@ -33,7 +34,7 @@ public class CommentController {
     }
 
     @PutMapping
-    public ResponseEntity<CommentResponseDto> update(@RequestBody CommentUpdateDto updateDto) {
+    public ResponseEntity<CommentResponseDto> update(@RequestBody @Valid CommentUpdateDto updateDto) {
         log.info(getRequest(CommentEntity.class, "update", updateDto));
         var entity = commentService.update(updateDto);
         log.info(getResultRequest(CommentEntity.class, "updated", entity));

@@ -139,6 +139,21 @@ public class UserControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var createDto = generateCreateDto();
+        createDto.setUsername("");
+
+        //when
+        mockMvc.perform(post("/users")
+                        .content(objectMapper.writeValueAsString(createDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testCreate_whenCreate_thenPasswordIsEncoded() throws Exception {
         //given
         var createDto = generateCreateDto();
@@ -216,6 +231,22 @@ public class UserControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setUsername("");
+
+        //when
+        mockMvc.perform(put("/users")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testUpdate_whenUserNotFound_then404() throws Exception {
         //given
         var idToSearch = 5L;
@@ -289,6 +320,21 @@ public class UserControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testChangePassword_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var changeDto = generatePasswordDto(idToGenerate, null);
+
+        //when
+        mockMvc.perform(put("/users/password")
+                        .content(objectMapper.writeValueAsString(changeDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testChangePassword_whenUserNotFound_then404() throws Exception {
         //given
         var oldPassword = "oldPassword";
@@ -340,6 +386,22 @@ public class UserControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testChangeEmail_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var newEmail = "fake";
+        var changeDto = generateEmailDto(idToGenerate, newEmail);
+
+        //when
+        mockMvc.perform(put("/users/email")
+                        .content(objectMapper.writeValueAsString(changeDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testChangeEmail_whenUserNotFound_then404() throws Exception {
         //given
         var newEmail = "starleken@mail.ru";
@@ -387,6 +449,22 @@ public class UserControllerTest extends BaseIntegrationTest {
         //then
         equal(savedUser, signupDto);
         assertEquals(USER, savedUser.getRole());
+    }
+
+    @Test
+    void testSignup_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var email = "fake";
+        var signupDto = generateSignupDto();
+        signupDto.setEmail(email);
+
+        //when
+        mockMvc.perform(post("/users/signup")
+                        .content(objectMapper.writeValueAsString(signupDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -442,6 +520,22 @@ public class UserControllerTest extends BaseIntegrationTest {
         assertEquals(savedUser.getId(), response.getUserId());
         assertDoesNotThrow(() -> tokenService.validateAccessToken(response.getAccessToken()));
         assertDoesNotThrow(() -> tokenService.validateRefreshToken(response.getRefreshToken()));
+    }
+
+    @Test
+    void testLogin_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var email = "fake";
+        var loginDto = generateLoginRequestDto();
+        loginDto.setEmail(email);
+
+        //when
+        mockMvc.perform(post("/users/login")
+                        .content(objectMapper.writeValueAsString(loginDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
