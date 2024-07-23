@@ -2,6 +2,7 @@ package com.example.fileservice.controller;
 
 import com.example.fileservice.dto.*;
 import com.example.fileservice.service.FileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class FileController {
     private final FileService fileService;
 
     @GetMapping("/url")
-    public ResponseEntity<DownloadFileResponseDto> download(@RequestBody DownloadFileRequestDto requestDto) {
+    public ResponseEntity<DownloadFileResponseDto> download(@RequestBody @Valid DownloadFileRequestDto requestDto) {
         log.info("FileEntity download requested: " + requestDto.toString());
         var response = fileService.download(requestDto);
         log.info("FileEntity download request. Response: " + response.toString());
@@ -32,8 +33,10 @@ public class FileController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
+
     @PostMapping(path = "/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<FileResponseDto> upload(@ModelAttribute FileUploadDto uploadDto) {
+    public ResponseEntity<FileResponseDto> upload(@ModelAttribute @Valid FileUploadDto uploadDto) {
         log.info("FileEntity upload requested: " + uploadDto.toString());
         var response = fileService.upload(uploadDto);
         log.info("FileEntity upload request. Response: " + response.toString());

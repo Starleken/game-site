@@ -3,7 +3,6 @@ package com.leafall.accountsservice.utils;
 import com.leafall.accountsservice.exception.EntityNotFoundException;
 import com.leafall.accountsservice.exception.Error;
 import com.leafall.accountsservice.exception.IllegalActionException;
-import com.leafall.accountsservice.exception.ServiceNotWorkingException;
 
 public abstract class ExceptionUtils {
 

@@ -1,6 +1,7 @@
-package com.leafall.accountsservice.dto.user;
+package org.leafall.authservice.dto.user;
 
-import com.leafall.accountsservice.entity.UserEntityRole;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,6 +9,9 @@ import lombok.Data;
 @Builder
 public class UserUpdateDto {
 
+    @NotNull(message = "Request must contains user id")
     private Long id;
+
+    @NotBlank(message = "Request must contains username")
     private String username;
 }

@@ -7,6 +7,7 @@ import com.leafall.accountsservice.entity.GameEntity;
 import com.leafall.accountsservice.entity.GenreEntity;
 import com.leafall.accountsservice.entity.ReviewEntity;
 import com.leafall.accountsservice.service.ReviewService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping
-    public ResponseEntity<ReviewResponseDto> create(@RequestBody ReviewCreateDto createDto) {
+    public ResponseEntity<ReviewResponseDto> create(@RequestBody @Valid ReviewCreateDto createDto) {
         log.info(getRequest(ReviewEntity.class, "create", createDto));
         var result = reviewService.create(createDto);
         log.info(getResultRequest(ReviewEntity.class, "created", result));
@@ -34,7 +35,7 @@ public class ReviewController {
     }
 
     @PutMapping
-    public ResponseEntity<ReviewResponseDto> update(@RequestBody ReviewUpdateDto updateDto) {
+    public ResponseEntity<ReviewResponseDto> update(@RequestBody @Valid ReviewUpdateDto updateDto) {
         log.info(getRequest(ReviewEntity.class, "update", updateDto));
         var result = reviewService.update(updateDto);
         log.info(getResultRequest(ReviewEntity.class, "updated", result));

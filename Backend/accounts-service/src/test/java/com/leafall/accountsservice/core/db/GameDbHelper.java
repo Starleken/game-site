@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.leafall.accountsservice.core.utils.FileUtils.getFileResponseDto;
 import static com.leafall.accountsservice.core.utils.entity.GameEntityUtils.*;
 import static com.leafall.accountsservice.core.utils.entity.ReviewEntityUtils.*;
 import static com.leafall.accountsservice.utils.ExceptionUtils.*;
@@ -27,24 +28,24 @@ public class GameDbHelper {
     private final GenreDbHelper genreDbHelper;
     private final FileDbHelper fileDbHelper;
 
-    public GameEntity saveGame(Class testClass) {
-        var generated = generate(fileDbHelper.addFile(testClass));
+    public GameEntity saveGame() {
+        var generated = generate(getFileResponseDto());
 
         return gameRepository.save(generated);
     }
 
-    public List<GameEntity> saveGame(int count, Class testClass) {
+    public List<GameEntity> saveGame(int count) {
         List<GameEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = generate(fileDbHelper.addFile(testClass));
+            var generated = generate(getFileResponseDto());
             entities.add(generated);
         }
 
         return gameRepository.saveAll(entities);
     }
 
-    public GameEntity saveGameWithReviews(int reviewCount, Class testClass) {
-        var savedGame = saveGame(testClass);
+    public GameEntity saveGameWithReviews(int reviewCount) {
+        var savedGame = saveGame();
 
         for (int i = 0; i < reviewCount; i++) {
             reviewRepository.save(generateReview(savedGame));

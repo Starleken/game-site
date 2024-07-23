@@ -7,6 +7,7 @@ import com.leafall.accountsservice.entity.GenreEntity;
 import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.service.GenreService;
 import com.leafall.accountsservice.utils.LogUtils;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class GenreController {
     }
 
     @PostMapping
-    public ResponseEntity<GenreResponseDto> create(@RequestBody GenreCreateDto createDto) {
+    public ResponseEntity<GenreResponseDto> create(@RequestBody @Valid GenreCreateDto createDto) {
         log.info(getRequest(GenreEntity.class, "create", createDto));
         var created = genreService.create(createDto);
         log.info(getResultRequest(GenreEntity.class, "created", created));
@@ -44,7 +45,7 @@ public class GenreController {
     }
 
     @PutMapping
-    public ResponseEntity<GenreResponseDto> update(@RequestBody GenreUpdateDto updateDto) {
+    public ResponseEntity<GenreResponseDto> update(@RequestBody @Valid GenreUpdateDto updateDto) {
         log.info(getRequest(GenreEntity.class, "update", updateDto));
         var updated = genreService.update(updateDto);
         log.info(getResultRequest(GenreEntity.class, "updated", updated));

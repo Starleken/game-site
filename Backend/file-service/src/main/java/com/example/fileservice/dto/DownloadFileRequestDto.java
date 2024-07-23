@@ -1,5 +1,6 @@
 package com.example.fileservice.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,5 +8,6 @@ import lombok.Data;
 @Builder
 public class DownloadFileRequestDto {
 
+    @NotBlank(message = "the request must contains url")
     private String url;
 }

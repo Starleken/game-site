@@ -30,7 +30,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testCreate_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
+        var savedGame = gameDbHelper.saveGame();
         var createDto = generateCreateDto(savedGame.getId());
 
         //when
@@ -45,6 +45,22 @@ public class ReviewControllerTest extends BaseIntegrationTest {
 
         //then
         equal(response, createDto);
+    }
+
+    @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var createDto = generateCreateDto(idToGenerate);
+        createDto.setContent("");
+
+        //when
+        mockMvc.perform(post("/reviews")
+                        .content(objectMapper.writeValueAsString(createDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -65,7 +81,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
+        var savedGame = gameDbHelper.saveGame();
         var savedReview = reviewDbHelper.saveReview(savedGame);
         var updateDto = generateUpdateDto(savedReview.getId());
 
@@ -81,6 +97,22 @@ public class ReviewControllerTest extends BaseIntegrationTest {
 
         //then
         equal(response, updateDto);
+    }
+
+    @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setContent("");
+
+        //when
+        mockMvc.perform(put("/reviews")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -101,7 +133,7 @@ public class ReviewControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedGame = gameDbHelper.saveGame(ReviewControllerTest.class);
+        var savedGame = gameDbHelper.saveGame();
         var savedReview = reviewDbHelper.saveReview(savedGame);
 
         //when

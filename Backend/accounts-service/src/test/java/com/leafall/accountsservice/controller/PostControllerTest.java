@@ -5,15 +5,22 @@ import com.leafall.accountsservice.BaseIntegrationTest;
 import com.leafall.accountsservice.core.db.PostDbHelper;
 import com.leafall.accountsservice.dto.post.PostResponseDto;
 import com.leafall.accountsservice.dto.post.PostResponseShortDto;
+import dto.FileResponseDto;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import service.FileService;
 import service.HistoryService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static com.leafall.accountsservice.core.utils.FileUtils.*;
 import static com.leafall.accountsservice.core.utils.dto.PostDtoUtils.*;
@@ -32,11 +39,14 @@ public class PostControllerTest extends BaseIntegrationTest {
     private PostDbHelper postDbHelper;
 
     @MockBean
-    private HistoryService historyService;
+    private FileService fileService;
 
     @BeforeEach
     void setUp() {
         dbCleaner.clear();
+        reset(historyService);
+
+        mockFileService();
     }
 
     @Test
@@ -63,7 +73,7 @@ public class PostControllerTest extends BaseIntegrationTest {
     void testFindById_happyPath() throws Exception {
         //given
         var commentsCount = 5;
-        var savedPost = postDbHelper.saveWithComments(commentsCount, PostControllerTest.class);
+        var savedPost = postDbHelper.saveWithComments(commentsCount);
 
         //when
         var mvcResult = mockMvc.perform(get("/posts/{id}", savedPost.getId()))
@@ -115,6 +125,24 @@ public class PostControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var createDto = generateCreateDto();
+        createDto.setContent("");
+        var file = getMockMultipartFile(PostControllerTest.class);
+
+        //when
+        mockMvc.perform(multipart(POST,"/posts")
+                        .file(file)
+                        .contentType(MULTIPART_FORM_DATA)
+                        .param("header", createDto.getHeader())
+                        .param("content", createDto.getContent()))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testCreate_whenCreate_thenHistoryServiceCalledOnce() throws Exception {
         //given
         var createDto = generateCreateDto();
@@ -135,7 +163,7 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(PostControllerTest.class);
+        var savedPost = postDbHelper.save();
         var updateDto = generateUpdateDto(savedPost.getId());
 
         //when
@@ -151,6 +179,22 @@ public class PostControllerTest extends BaseIntegrationTest {
         //then
         equal(updateDto, dto);
         assertNotNull(dto.getImage());
+    }
+
+    @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setContent("");
+
+        //when
+        mockMvc.perform(put("/posts")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -171,7 +215,7 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(PostControllerTest.class);
+        var savedPost = postDbHelper.save();
 
         //when
         mockMvc.perform(delete("/posts/{id}", savedPost.getId()))
@@ -197,7 +241,7 @@ public class PostControllerTest extends BaseIntegrationTest {
     @Test
     void testChangeImage_happyPath() throws Exception {
         //given
-        var savedPost = postDbHelper.save(PostControllerTest.class);
+        var savedPost = postDbHelper.save();
         var changeImageDto = generateChangeImageDto(savedPost.getId());
 
         //when
@@ -214,5 +258,11 @@ public class PostControllerTest extends BaseIntegrationTest {
         //then
         assertNotNull(fileResponse);
         assertNotNull(fileResponse.getImage());
+    }
+
+    private void mockFileService() {
+        when(fileService.upload(any())).thenReturn(getFileResponseDto());
+
+        when(fileService.findById(any())).thenReturn(getFileResponseDto());
     }
 }

@@ -6,12 +6,18 @@ import lombok.ToString;
 import org.leafall.authservice.entity.aware.AuthorAware;
 import org.leafall.authservice.entity.aware.TimestampAware;
 import org.leafall.authservice.entity.listener.AuthorListener;
+import org.leafall.authservice.entity.listener.HistoryListener;
 import org.leafall.authservice.entity.listener.TimestampListener;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
-@EntityListeners({AuthorListener.class, TimestampListener.class})
+@EntityListeners({AuthorListener.class, TimestampListener.class, HistoryListener.class})
 public class UserEntity implements AuthorAware, TimestampAware {
 
     @Id
@@ -27,6 +33,9 @@ public class UserEntity implements AuthorAware, TimestampAware {
     @ToString.Exclude
     @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<TokenEntity> tokens = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role", nullable = false)

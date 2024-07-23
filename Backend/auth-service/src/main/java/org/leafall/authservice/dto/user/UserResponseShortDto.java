@@ -1,8 +1,8 @@
-package com.leafall.accountsservice.dto.user;
+package org.leafall.authservice.dto.user;
 
-import com.leafall.accountsservice.entity.UserEntityRole;
 import lombok.Builder;
 import lombok.Data;
+import org.leafall.authservice.entity.UserEntityRole;
 
 import java.util.Date;
 

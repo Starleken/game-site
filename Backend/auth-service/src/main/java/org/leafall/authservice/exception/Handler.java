@@ -3,6 +3,7 @@ package org.leafall.authservice.exception;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -23,12 +24,17 @@ public class Handler {
     }
 
     @ExceptionHandler(ExpiredJwtException.class)
-    public ResponseEntity<Object> handler(ExpiredJwtException ex, WebRequest request){
+    public ResponseEntity<Object> handler(ExpiredJwtException ex, WebRequest request) {
         return new ResponseEntity<>("Token is expired", HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(TokenIsUsedException.class)
-    public ResponseEntity<Object> handler(TokenIsUsedException ex, WebRequest request){
+    public ResponseEntity<Object> handler(TokenIsUsedException ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handler(MethodArgumentNotValidException ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

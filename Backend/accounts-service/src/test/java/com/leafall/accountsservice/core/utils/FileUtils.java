@@ -1,11 +1,13 @@
 package com.leafall.accountsservice.core.utils;
 
+import dto.FileResponseDto;
 import lombok.SneakyThrows;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class FileUtils {
 
@@ -25,5 +27,21 @@ public class FileUtils {
         }
 
         return files;
+    }
+
+    public static FileResponseDto getFileResponseDto() {
+        var fileResponseDto = new FileResponseDto();
+        fileResponseDto.setId(UUID.randomUUID());
+        fileResponseDto.setFileUrl("s3://bucket/item/uui-1111");
+        fileResponseDto.setOriginalFileName("testFile.txt");
+
+        return fileResponseDto;
+    }
+
+    public static FileResponseDto getFileResponseDto(UUID uuid) {
+        var fileResponseDto = getFileResponseDto();
+        fileResponseDto.setId(uuid);
+
+        return fileResponseDto;
     }
 }

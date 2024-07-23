@@ -22,3 +22,6 @@ aws:
 
 historyservice-starter:
   kafka-url: localhost:9092
+
+token-service-starter:
+  secret-key: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w

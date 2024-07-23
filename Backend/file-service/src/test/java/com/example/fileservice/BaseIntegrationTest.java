@@ -2,25 +2,23 @@ package com.example.fileservice;
 
 import com.example.fileservice.core.db.DbCleaner;
 import com.example.fileservice.core.db.FileDbHelper;
-import com.example.fileservice.core.utils.FakerUtils;
-import com.example.fileservice.entity.FileEntity;
 import com.example.fileservice.initializer.PostgresInitializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import service.HistoryService;
 
-import java.util.UUID;
-
-import static com.example.fileservice.core.utils.FakerUtils.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ActiveProfiles(profiles = "test")
-@ContextConfiguration(initializers = { PostgresInitializer.class })
+@ContextConfiguration(initializers = { PostgresInitializer.class})
 @AutoConfigureMockMvc
 public class BaseIntegrationTest {
 
@@ -36,8 +34,12 @@ public class BaseIntegrationTest {
     @Autowired
     protected FileDbHelper fileDbHelper;
 
+    @MockBean
+    protected HistoryService historyService;
+
     @BeforeEach
     void setUp() {
         dbCleaner.clear();
+        reset(historyService);
     }
 }

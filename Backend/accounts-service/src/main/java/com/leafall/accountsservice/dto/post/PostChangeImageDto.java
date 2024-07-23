@@ -1,5 +1,6 @@
 package com.leafall.accountsservice.dto.post;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,8 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 public class PostChangeImageDto {
 
+    @NotNull(message = "Request must contain id of the post")
     private Long id;
 
+    @NotNull(message = "Request must contain an image of the post")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private MultipartFile file;

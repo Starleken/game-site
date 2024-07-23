@@ -1,5 +1,6 @@
 package org.leafall.authservice.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leafall.authservice.dto.token.RefreshTokenRequestDto;
@@ -52,7 +53,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserCreateDto createDto) {
+    public ResponseEntity<UserResponseDto> create(@RequestBody @Valid UserCreateDto createDto) {
         log.info("User create request: {}", createDto);
         var entity = userService.create(createDto);
         log.info(getResultRequest(UserEntity.class, "created", entity));
@@ -61,7 +62,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<UserResponseDto> update(@RequestBody UserUpdateDto updateDto) {
+    public ResponseEntity<UserResponseDto> update(@RequestBody @Valid UserUpdateDto updateDto) {
         log.info("User update request: {}", updateDto);
         var entity = userService.update(updateDto);
         log.info(getResultRequest(UserEntity.class, "updated", entity));
@@ -79,7 +80,7 @@ public class UserController {
     }
 
     @PutMapping("/password")
-    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordDto passwordDto) {
+    public ResponseEntity<Void> changePassword(@RequestBody @Valid ChangePasswordDto passwordDto) {
         log.info(getRequest("password", "change", "Id", passwordDto.getId()));
         userService.changePassword(passwordDto);
         log.info(getRequest("password", "changed", "Id", passwordDto.getId()));
@@ -88,7 +89,7 @@ public class UserController {
     }
 
     @PutMapping("/email")
-    public ResponseEntity<Void> changeEmail(@RequestBody ChangeEmailDto emailDto) {
+    public ResponseEntity<Void> changeEmail(@RequestBody @Valid ChangeEmailDto emailDto) {
         log.info(getRequest("email", "change", "Id", emailDto.getId()));
         userService.changeEmail(emailDto);
         log.info(getRequest("email", "changed", "Id", emailDto.getId()));
@@ -97,7 +98,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Void> signup(@RequestBody UserSignupDto signupDto) {
+    public ResponseEntity<Void> signup(@RequestBody @Valid UserSignupDto signupDto) {
         log.info(getRequest(UserEntity.class, "signup", signupDto));
         userService.signup(signupDto);
         log.info(getResultRequest(UserEntity.class, "registered user", signupDto.getEmail()));
@@ -106,7 +107,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginDto) {
+    public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginRequestDto loginDto) {
         log.info(getRequest(UserEntity.class, "login", loginDto));
         var response = userService.login(loginDto);
         log.info(getResultRequest(UserEntity.class, "is logged in", response));
@@ -115,7 +116,7 @@ public class UserController {
     }
 
     @PostMapping("/tokens/refresh")
-    public ResponseEntity<RefreshTokenResponseDto> refresh(@RequestBody RefreshTokenRequestDto refreshDto) {
+    public ResponseEntity<RefreshTokenResponseDto> refresh(@RequestBody @Valid RefreshTokenRequestDto refreshDto) {
         log.info(getRequest(UserEntity.class, "refresh", refreshDto));
         var response = userService.refresh(refreshDto);
         log.info(getResultRequest(UserEntity.class, " is refreshed", response));

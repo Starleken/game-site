@@ -1,5 +1,6 @@
 package com.leafall.accountsservice.core.db;
 
+import com.leafall.accountsservice.core.utils.FileUtils;
 import com.leafall.accountsservice.entity.PostEntity;
 import com.leafall.accountsservice.repository.CommentRepository;
 import com.leafall.accountsservice.repository.PostRepository;
@@ -23,14 +24,14 @@ public class PostDbHelper {
     private final FileDbHelper fileDbHelper;
     private final CommentDbHelper commentDbHelper;
 
-    public PostEntity save(Class testClass) {
-        var generated = generate(fileDbHelper.addFile(testClass));
+    public PostEntity save() {
+        var generated = generate(getFileResponseDto());
 
         return repository.save(generated);
     }
 
-    public PostEntity saveWithComments(int commentsCount, Class testClass) {
-        var generated = generate(fileDbHelper.addFile(testClass));
+    public PostEntity saveWithComments(int commentsCount) {
+        var generated = generate(getFileResponseDto());
 
         var savedPost = repository.save(generated);
 
@@ -45,7 +46,7 @@ public class PostDbHelper {
     public List<PostEntity> save(int count, Class testClass) {
         List<PostEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = generate(fileDbHelper.addFile(testClass));
+            var generated = generate(getFileResponseDto());
             entities.add(generated);
         }
 

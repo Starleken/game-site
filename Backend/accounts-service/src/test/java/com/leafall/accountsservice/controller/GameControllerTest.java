@@ -5,18 +5,25 @@ import com.leafall.accountsservice.BaseIntegrationTest;
 import com.leafall.accountsservice.core.db.GameDbHelper;
 import com.leafall.accountsservice.dto.game.GameResponseDto;
 import com.leafall.accountsservice.dto.game.GameResponseShortDto;
+import dto.FileResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
+import service.FileService;
 import service.HistoryService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-import static com.leafall.accountsservice.core.utils.FileUtils.getMockMultipartFile;
-import static com.leafall.accountsservice.core.utils.FileUtils.getMockMultipartFiles;
+import static com.leafall.accountsservice.core.utils.FileUtils.*;
+import static com.leafall.accountsservice.core.utils.FileUtils.getFileResponseDto;
 import static com.leafall.accountsservice.core.utils.dto.GameDtoUtils.*;
 import static com.leafall.accountsservice.core.utils.equals.GameEqualsUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,16 +39,20 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Autowired
     private GameDbHelper dbHelper;
 
+    @MockBean
+    private FileService fileService;
+
     @BeforeEach
     void setUp() {
         dbCleaner.clear();
+        mockFileService();
     }
 
     @Test
     void testFindAll_happyPath() throws Exception {
         //given
         var count = 4;
-        var saved = dbHelper.saveGame(count, GameControllerTest.class);
+        var saved = dbHelper.saveGame(count);
 
         //when
         var mvcResult = mockMvc.perform(get("/games"))
@@ -59,7 +70,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Test
     void testFindById_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame(GameControllerTest.class);
+        var saved = dbHelper.saveGame();
 
         //when
         var mvcResult = mockMvc.perform(get("/games/{id}", saved.getId()))
@@ -77,7 +88,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     void testFindById_whenSaveWithReviews_thenReturnReviews() throws Exception {
         //given
         var reviewsCount = 4;
-        var saved = dbHelper.saveGameWithReviews(reviewsCount, GameControllerTest.class);
+        var saved = dbHelper.saveGameWithReviews(reviewsCount);
 
         //when
         var mvcResult = mockMvc.perform(get("/games/{id}", saved.getId()))
@@ -130,9 +141,23 @@ public class GameControllerTest extends BaseIntegrationTest {
     }
 
     @Test
+    void testCreate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var createDto = generateCreateDto();
+
+        //when
+        mockMvc.perform(multipart(POST, "/games")
+                        .content(objectMapper.writeValueAsString(createDto))
+                        .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
+
+    @Test
     void testUpdate_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame(GameControllerTest.class);
+        var saved = dbHelper.saveGame();
         var updateDto = generateUpdateDto(saved.getId());
         updateDto.setGenres(dbHelper.saveGenres(5));
 
@@ -149,6 +174,22 @@ public class GameControllerTest extends BaseIntegrationTest {
         //then
         assertNotNull(response.getHeaderImage());
         equal(updateDto, response);
+    }
+
+    @Test
+    void testUpdate_whenDtoIsNotValid_then400() throws Exception {
+        //given
+        var idToGenerate = 1L;
+        var updateDto = generateUpdateDto(idToGenerate);
+        updateDto.setDescription("");
+
+        //when
+        mockMvc.perform(put("/games")
+                        .content(objectMapper.writeValueAsString(updateDto))
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        //then
     }
 
     @Test
@@ -169,7 +210,7 @@ public class GameControllerTest extends BaseIntegrationTest {
     @Test
     void testDeleteById_happyPath() throws Exception {
         //given
-        var saved = dbHelper.saveGame(GameControllerTest.class);
+        var saved = dbHelper.saveGame();
 
         //when
         mockMvc.perform(delete("/games/{id}", saved.getId()))
@@ -191,5 +232,40 @@ public class GameControllerTest extends BaseIntegrationTest {
                 .andExpect(status().isNotFound());
 
         //then
+    }
+
+    private void mockFileService() {
+        when(fileService.upload(any())).thenReturn(getFileResponseDto());
+        when(fileService.uploadAll(anyList())).thenAnswer(new Answer<List<FileResponseDto>>() {
+            @Override
+            public List<FileResponseDto> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                List<?> files = invocationOnMock.getArgument(0);
+                List<FileResponseDto> dtos = new ArrayList<>();
+                for (int i = 0; i < files.size(); i++) {
+                    dtos.add(getFileResponseDto());
+                }
+
+                return dtos;
+            }
+        });
+
+        when(fileService.findById(any())).thenAnswer(new Answer<FileResponseDto>() {
+            @Override
+            public FileResponseDto answer(InvocationOnMock invocationOnMock) throws Throwable {
+                return getFileResponseDto(invocationOnMock.getArgument(0));
+            }
+        });
+        when(fileService.findAllByIds(anyList())).thenAnswer(new Answer<List<FileResponseDto>>() {
+            @Override
+            public List<FileResponseDto> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                List<UUID> files = invocationOnMock.getArgument(0);
+                List<FileResponseDto> dtos = new ArrayList<>();
+                for (var uuid : files) {
+                    dtos.add(getFileResponseDto(uuid));
+                }
+
+                return dtos;
+            }
+        });
     }
 }
