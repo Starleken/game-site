@@ -1,1 +1,1 @@
-com.leafall.tokenservice.config.TokenServiceMapAutoConfiguration
+org.leafall.tokenservicestarter.config.TokenServiceMapAutoConfiguration

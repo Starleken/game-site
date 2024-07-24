@@ -1,10 +1,10 @@
 package com.example.fileservice.entity.listener;
 
 import com.example.fileservice.entity.aware.AuthorAware;
-import com.leafall.tokenservice.service.AuthContextHolder;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.RequiredArgsConstructor;
+import org.leafall.tokenservicestarter.service.AuthContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -83,7 +83,7 @@
         </dependency>
         <dependency>
             <groupId>org.leafall</groupId>
-            <artifactId>historyservice-starter</artifactId>
+            <artifactId>history-service-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

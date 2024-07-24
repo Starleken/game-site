@@ -1,6 +1,5 @@
 package org.leafall.authservice.entity.listener;
 
-import entity.HistoryAction;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostRemove;
 import jakarta.persistence.PostUpdate;
@@ -8,10 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.leafall.authservice.entity.UserEntity;
 import org.leafall.authservice.exception.HistoryMappingException;
 import org.leafall.authservice.mapper.HistoryMapper;
+import org.leafall.historyservicestarter.entity.HistoryAction;
+import org.leafall.historyservicestarter.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import service.HistoryService;
-
 import java.time.Instant;
 
 import static java.lang.String.format;
