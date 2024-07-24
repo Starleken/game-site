@@ -1,1 +1,1 @@
-config.FileServiceMapAutoConfiguration
+org.leafall.fileservicestarter.config.FileServiceMapAutoConfiguration
