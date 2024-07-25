@@ -24,4 +24,4 @@ jwt:
     ttlMinutes: 480
 
 historyservice-starter:
-  kafka-url: localhost:9092
+  kafka-url: ${KAFKA_URL}

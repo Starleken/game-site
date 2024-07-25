@@ -4,3 +4,4 @@ DB_PASSWORD: 1111
 PORT: 8081
 DB_SCHEMA: leafall_files
 BUCKET_NAME: leafall-test
+KAFKA_URL: localhost:9092

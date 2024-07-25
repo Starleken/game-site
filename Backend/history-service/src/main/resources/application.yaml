@@ -1,15 +1,14 @@
 server:
-  port: 8082
+  port: ${PORT}
 
 spring:
   application:
     name: history-service
-
   data:
     mongodb:
-      uri: mongodb://localhost:27017/test
+      uri: mongodb://${DATABASE_URL}/${DATABASE_SCHEMA}
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_URL}
     consumer:
       group-id: test-consumer-group
