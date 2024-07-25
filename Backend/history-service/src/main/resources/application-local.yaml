@@ -1,0 +1,4 @@
+DATABASE_URL: localhost:27017
+DATABASE_SCHEMA: test
+KAFKA_URL: localhost:9092
+PORT: 8082

@@ -5,149 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="235eaaea-46be-4167-b538-aa60f9307e21" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../accounts-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/AccountsServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/controller/CommentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/controller/GameController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/controller/GenreController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/controller/PostController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/controller/ReviewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/comment/CommentCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/comment/CommentHistoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/comment/CommentResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/comment/CommentUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameChangeImageDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameHistoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameResponseShortDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/game/GameUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/genre/GenreCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/genre/GenreHistoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/genre/GenreResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/genre/GenreUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostChangeImageDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostHistoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostResponseShortDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/post/PostUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/review/ReviewCreateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/review/ReviewHistoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/review/ReviewResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/dto/review/ReviewUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/CommentEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/GameEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/GenreEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/PostEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/ReviewEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/aware/AuthorAware.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/aware/TimestampAware.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/listener/AuthorListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/listener/HistoryListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/entity/listener/TimestampListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/exception/EntityNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/exception/Error.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/exception/Handler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/exception/HistoryMappingException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/exception/IllegalActionException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/CommentMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/GameMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/GenreMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/HistoryMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/PostMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/mapper/ReviewMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/CommentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/GameRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/GenreRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/PostRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/repository/ReviewRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/CommentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/GameService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/GenreService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/PostService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/ReviewService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/CommentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/GameServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/GenreServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/PostServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/service/impl/ReviewServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/utils/ExceptionUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/java/com/leafall/accountsservice/utils/LogUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/application-local.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/application-test.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.0-add-initial-schema.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.1-rename-images-to-files.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.2-delete-foreign-keys-to-images.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.3-add-fields-to-auditing.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.4-add-table-game-genres.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.5-add-view-with-game-avg-grade.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.6-delete-files-table.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/changelog/change-1.7-delete-users-table.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/main/resources/db/master.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/AccountsServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/BaseIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/CommentControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/GameControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/GenreControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/PostControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/controller/ReviewControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/CommentDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/DbCleaner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/FileDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/GameDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/GenreDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/PostDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/db/ReviewDbHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/FakerUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/FileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/dto/CommentDtoUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/dto/GameDtoUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/dto/GenreDtoUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/dto/PostDtoUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/dto/ReviewDtoUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/CommentEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/FileEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/GameEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/GenreEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/PostEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/entity/ReviewEntityUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/equals/CommentEqualsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/equals/GameEqualsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/equals/GenreEqualsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/equals/PostEqualsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/core/utils/equals/ReviewEqualsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/initializer/PostgresInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/java/com/leafall/accountsservice/service/FileServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-service/src/test/resources/testFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-service/src/main/resources/application-local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application-local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/FileServiceMapAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/leafall/fileservicestarter/config/FileServiceMapAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/FileServiceMapProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/leafall/fileservicestarter/config/FileServiceMapProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/FileResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/leafall/fileservicestarter/dto/FileResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/leafall/fileservicestarter/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/MultipartInputStreamFileResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/leafall/fileservicestarter/service/MultipartInputStreamFileResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/src/main/java/config/HistoryServiceMapAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/src/main/java/org/leafall/historyservicestarter/config/HistoryServiceMapAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/src/main/java/config/HistoryServiceMapProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/src/main/java/org/leafall/historyservicestarter/config/HistoryServiceMapProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/src/main/java/entity/HistoryAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/src/main/java/org/leafall/historyservicestarter/entity/HistoryAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/src/main/java/service/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/src/main/java/org/leafall/historyservicestarter/service/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../history-service-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../file-service/src/main/resources/application-local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../file-service/src/main/resources/application-local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../file-service/src/main/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../file-service/src/main/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../file-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../file-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../history-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../history-service/src/test/java/org/leafall/historyservice/HistoryServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../history-service/src/test/java/org/leafall/historyservice/HistoryServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main-service/src/main/resources/application-local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../main-service/src/main/resources/application-local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main-service/src/main/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../main-service/src/main/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../main-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../token-service-starter/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/component/TokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/component/TokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/config/TokenServiceMapAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/config/TokenServiceMapAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/config/TokenServiceMapProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/config/TokenServiceMapProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/model/AuthContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/model/AuthContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/service/AuthContextHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/service/AuthContextHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/service/AuthContextResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/service/AuthContextResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/java/com/leafall/tokenservice/service/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/java/org/leafall/tokenservicestarter/service/TokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token-service-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" beforeDir="false" afterPath="$PROJECT_DIR$/../token-service-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,12 +40,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "30-change-service-folders",
-    "last_opened_file_path": "D:/Projects/JavaProjects/game-site/Backend/history-service",
+    "git-widget-placeholder": "25-create-docker-integration",
+    "last_opened_file_path": "D:/Projects/JavaProjects/game-site/Backend/file-service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -191,6 +62,10 @@
       <workItem from="1720785163680" duration="868000" />
       <workItem from="1720786230848" duration="510000" />
       <workItem from="1721798885741" duration="73000" />
+      <workItem from="1721819755414" duration="9000" />
+      <workItem from="1721820789804" duration="13000" />
+      <workItem from="1721878415409" duration="68000" />
+      <workItem from="1721880955416" duration="83000" />
     </task>
     <servers />
   </component>

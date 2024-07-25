@@ -16,10 +16,10 @@ spring:
     enabled: true
 
 fileservice-starter:
-  file-service-url: http://127.0.0.1:8081/files
+  file-service-url: ${FILE_SERVICE_URL}/files
 
 historyservice-starter:
-  kafka-url: localhost:9092
+  kafka-url: ${KAFKA_URL}
 
 token-service-starter:
   secret-key: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w

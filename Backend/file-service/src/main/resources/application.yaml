@@ -21,7 +21,7 @@ aws:
     presigned-url-ttl-millis: 1800000
 
 historyservice-starter:
-  kafka-url: localhost:9092
+  kafka-url: ${KAFKA_URL}
 
 token-service-starter:
   secret-key: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w
