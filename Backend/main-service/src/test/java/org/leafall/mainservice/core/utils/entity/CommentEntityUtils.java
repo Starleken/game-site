@@ -7,7 +7,7 @@ import static org.leafall.mainservice.core.utils.FakerUtils.*;
 
 public abstract class CommentEntityUtils {
 
-    public static CommentEntity generate(PostEntity post) {
+    public static CommentEntity generateComment(PostEntity post) {
         var comment = new CommentEntity();
         comment.setPost(post);
         comment.setContent(faker.lorem().paragraph());

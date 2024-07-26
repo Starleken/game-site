@@ -22,13 +22,13 @@ public class PostDbHelper {
     private final CommentDbHelper commentDbHelper;
 
     public PostEntity save() {
-        var generated = PostEntityUtils.generate(getFileResponseDto());
+        var generated = PostEntityUtils.generatePost(getFileResponseDto());
 
         return repository.save(generated);
     }
 
     public PostEntity saveWithComments(int commentsCount) {
-        var generated = PostEntityUtils.generate(getFileResponseDto());
+        var generated = PostEntityUtils.generatePost(getFileResponseDto());
 
         var savedPost = repository.save(generated);
 
@@ -43,7 +43,7 @@ public class PostDbHelper {
     public List<PostEntity> save(int count, Class testClass) {
         List<PostEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = PostEntityUtils.generate(getFileResponseDto());
+            var generated = PostEntityUtils.generatePost(getFileResponseDto());
             entities.add(generated);
         }
 

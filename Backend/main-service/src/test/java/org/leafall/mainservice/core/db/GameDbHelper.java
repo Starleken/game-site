@@ -26,7 +26,7 @@ public class GameDbHelper {
     private final FileDbHelper fileDbHelper;
 
     public GameEntity saveGame() {
-        var generated = generate(getFileResponseDto());
+        var generated = generateGame(getFileResponseDto());
 
         return gameRepository.save(generated);
     }
@@ -34,7 +34,7 @@ public class GameDbHelper {
     public List<GameEntity> saveGame(int count) {
         List<GameEntity> entities = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            var generated = generate(getFileResponseDto());
+            var generated = generateGame(getFileResponseDto());
             entities.add(generated);
         }
 

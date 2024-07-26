@@ -18,7 +18,7 @@ public class GenreDbHelper {
     private final GenreRepository genreRepository;
 
     public GenreEntity saveGenre() {
-        var generated = generate();
+        var generated = generateGenre();
         return genreRepository.save(generated);
     }
 
@@ -26,7 +26,7 @@ public class GenreDbHelper {
         List<GenreEntity> genres = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            var generated = generate();
+            var generated = generateGenre();
             genres.add(genreRepository.save(generated));
         }
 
