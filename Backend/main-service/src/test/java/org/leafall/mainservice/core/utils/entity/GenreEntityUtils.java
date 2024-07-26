@@ -5,7 +5,7 @@ import org.leafall.mainservice.entity.GenreEntity;
 
 public abstract class GenreEntityUtils {
 
-    public static GenreEntity generate() {
+    public static GenreEntity generateGenre() {
         var genre = new GenreEntity();
         genre.setName(FakerUtils.faker.lorem().sentence());
 

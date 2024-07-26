@@ -17,6 +17,13 @@ public abstract class UserEntityUtils {
         return entity;
     }
 
+    public static UserEntity generateUser(Long id) {
+        var entity = generateUser();
+        entity.setId(id);
+
+        return entity;
+    }
+
     public static UserEntity generateUser(String username, String email) {
         var generated = generateUser();
         generated.setUsername(username);

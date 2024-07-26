@@ -16,7 +16,7 @@ public class CommentDbHelper {
     private final CommentRepository commentRepository;
 
     public CommentEntity save(PostEntity post) {
-        var generated = CommentEntityUtils.generate(post);
+        var generated = CommentEntityUtils.generateComment(post);
         return commentRepository.save(generated);
     }
 

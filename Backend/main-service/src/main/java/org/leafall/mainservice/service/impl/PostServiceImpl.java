@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.leafall.mainservice.utils.ExceptionUtils.*;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -34,7 +36,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseDto findById(long id) {
         var found = postRepository.findById(id)
-                .orElseThrow(() -> ExceptionUtils.getEntityNotFoundException(PostEntity.class));
+                .orElseThrow(() -> getEntityNotFoundException(PostEntity.class));
 
         var responseDto = postMapper.mapToDto(found);
         responseDto.setImage(fileService.findById(found.getImageId()));
@@ -56,7 +58,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseDto update(PostUpdateDto updateDto) {
         var found = postRepository.findById(updateDto.getId())
-                .orElseThrow(() -> ExceptionUtils.getEntityNotFoundException(PostEntity.class));
+                .orElseThrow(() -> getEntityNotFoundException(PostEntity.class));
         postMapper.update(found, updateDto);
 
         var saved = postRepository.save(found);
@@ -68,7 +70,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteById(long id) {
         postRepository.findById(id)
-                .orElseThrow(() -> ExceptionUtils.getEntityNotFoundException(PostEntity.class));
+                .orElseThrow(() -> getEntityNotFoundException(PostEntity.class));
 
         postRepository.deleteById(id);
     }
@@ -76,7 +78,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseDto changeImage(PostChangeImageDto imageDto) {
         var found = postRepository.findById(imageDto.getId())
-                .orElseThrow(() -> ExceptionUtils.getEntityNotFoundException(PostEntity.class));
+                .orElseThrow(() -> getEntityNotFoundException(PostEntity.class));
 
         var image = fileService.upload(imageDto.getFile());
         found.setImageId(image.getId());
