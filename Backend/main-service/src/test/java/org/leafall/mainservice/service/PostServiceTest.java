@@ -18,6 +18,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,13 +51,14 @@ public class PostServiceTest {
     @Test
     void testFindAll_happyPath() {
         //given
-        when(postRepository.findAll()).thenReturn(List.of(generatePost(), generatePost()));
+        var postsToReturn = List.of(generatePost(), generatePost());
+        when(postRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(postsToReturn));
 
         //when
-        var respondeDtos = postService.findAll();
+        var responseDtos = postService.findAll(1, postsToReturn.size());
 
         //then
-        assertEquals(2, respondeDtos.size());
+        assertEquals(postsToReturn.size(), responseDtos.getTotalElements());
     }
 
     @Test

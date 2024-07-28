@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leafall.mainservice.dto.post.*;
 import org.leafall.mainservice.utils.ExceptionUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,12 +28,15 @@ public class PostServiceImpl implements PostService {
     private final PostMapper postMapper;
 
     @Override
-    public List<PostResponseShortDto> findAll() {
-        var entities = postRepository.findAll();
+    public Page<PostResponseShortDto> findAll(int page, int size) {
+        var pageable = PageRequest.of(page - 1, size);
+        var entities = postRepository.findAll(pageable);
 
-        return entities.stream()
+        var dtos = entities.stream()
                 .map(postMapper::mapToShortDto)
                 .toList();
+
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
     @Override

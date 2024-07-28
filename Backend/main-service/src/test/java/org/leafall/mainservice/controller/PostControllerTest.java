@@ -3,6 +3,7 @@ package org.leafall.mainservice.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.leafall.fileservicestarter.service.FileService;
 import org.leafall.mainservice.BaseIntegrationTest;
+import org.leafall.mainservice.RestPage;
 import org.leafall.mainservice.core.db.PostDbHelper;
 import org.leafall.mainservice.dto.post.PostResponseDto;
 import org.leafall.mainservice.dto.post.PostResponseShortDto;
@@ -49,17 +50,17 @@ public class PostControllerTest extends BaseIntegrationTest {
         postDbHelper.save(count, PostControllerTest.class);
 
         //when
-        var mvcResult = mockMvc.perform(get("/posts"))
+        var mvcResult = mockMvc.perform(get("/posts?page=1&size=" + count))
                 .andExpect(status().isOk())
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
         var dtos = objectMapper.readValue(
-                bytes, new TypeReference<List<PostResponseShortDto>>() {
+                bytes, new TypeReference<RestPage<PostResponseShortDto>>() {
                 });
 
         //then
-        assertEquals(count, dtos.size());
+        assertEquals(count, dtos.getTotalElements());
     }
 
     @Test

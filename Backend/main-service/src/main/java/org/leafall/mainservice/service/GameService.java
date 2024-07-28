@@ -1,12 +1,11 @@
 package org.leafall.mainservice.service;
 
 import org.leafall.mainservice.dto.game.*;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface GameService {
 
-    List<GameResponseShortDto> findAll();
+    Page<GameResponseShortDto> findAll(int page, int size);
 
     GameResponseDto findById(Long id);
 

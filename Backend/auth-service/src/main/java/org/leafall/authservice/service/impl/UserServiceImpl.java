@@ -11,6 +11,9 @@ import org.leafall.authservice.repository.UserRepository;
 import org.leafall.authservice.service.EncodingService;
 import org.leafall.authservice.service.TokenService;
 import org.leafall.authservice.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +32,15 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public List<UserResponseShortDto> findAll() {
-        var entities = userRepository.findAll();
+    public Page<UserResponseShortDto> findAll(int page, int size) {
+        var pageable = PageRequest.of(page - 1, size);
+        var entities = userRepository.findAll(pageable);
 
-        return entities.stream()
+        var dtos = entities.stream()
                 .map(userMapper::mapToShortDto)
                 .toList();
+
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
     @Override

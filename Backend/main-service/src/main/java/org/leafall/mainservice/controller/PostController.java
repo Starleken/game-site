@@ -1,11 +1,13 @@
 package org.leafall.mainservice.controller;
 
+import jakarta.validation.constraints.Min;
 import org.leafall.mainservice.entity.PostEntity;
 import org.leafall.mainservice.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leafall.mainservice.dto.post.*;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +26,13 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<List<PostResponseShortDto>> findAll() {
+    public ResponseEntity<Page<PostResponseShortDto>> findAll(@RequestParam(defaultValue = "1") @Min(1) Integer page,
+                                                              @RequestParam(defaultValue = "5") @Min(0) Integer size) {
         log.info(getRequest(PostEntity.class, "Find all"));
-        var entities = postService.findAll();
-        log.info(getRequest(PostEntity.class, entities.size()));
+        var result = postService.findAll(page, size);
+        log.info(getRequest(PostEntity.class, result.getSize()));
 
-        return new ResponseEntity<>(entities, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

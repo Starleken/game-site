@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.leafall.fileservicestarter.dto.FileResponseDto;
 import org.leafall.fileservicestarter.service.FileService;
 import org.leafall.mainservice.BaseIntegrationTest;
+import org.leafall.mainservice.RestPage;
 import org.leafall.mainservice.core.db.GameDbHelper;
 import org.leafall.mainservice.dto.game.GameResponseDto;
 import org.leafall.mainservice.dto.game.GameResponseShortDto;
@@ -50,19 +51,19 @@ public class GameControllerTest extends BaseIntegrationTest {
     void testFindAll_happyPath() throws Exception {
         //given
         var count = 4;
-        var saved = dbHelper.saveGame(count);
+        dbHelper.saveGame(4);
 
         //when
-        var mvcResult = mockMvc.perform(get("/games"))
+        var mvcResult = mockMvc.perform(get("/games?page=1&size=" + count))
                 .andExpect(status().isOk())
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
-        var response = objectMapper.readValue(bytes, new TypeReference<List<GameResponseShortDto>>() {
+        var response = objectMapper.readValue(bytes, new TypeReference<RestPage<GameResponseShortDto>>() {
         });
 
         //then
-        assertEquals(count, response.size());
+        assertEquals(count, response.getTotalElements());
     }
 
     @Test
