@@ -1,6 +1,7 @@
 package org.leafall.authservice.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leafall.authservice.dto.token.RefreshTokenRequestDto;
@@ -8,6 +9,7 @@ import org.leafall.authservice.dto.token.RefreshTokenResponseDto;
 import org.leafall.authservice.dto.user.*;
 import org.leafall.authservice.entity.UserEntity;
 import org.leafall.authservice.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +28,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponseShortDto>> findAll() {
+    public ResponseEntity<Page<UserResponseShortDto>> findAll(@RequestParam(defaultValue = "1") @Min(1) Integer page,
+                                                              @RequestParam(defaultValue = "5") @Min(0) Integer size) {
         log.info(getRequest(UserEntity.class, "find all"));
-        var entities = userService.findAll();
-        log.info(getRequest(UserEntity.class, entities.size()));
+        var result = userService.findAll(page, size);
+        log.info(getRequest(UserEntity.class, (int)result.getTotalElements()));
 
-        return new ResponseEntity<>(entities, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/ids")

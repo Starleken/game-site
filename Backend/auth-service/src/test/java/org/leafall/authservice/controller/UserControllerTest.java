@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.leafall.authservice.BaseIntegrationTest;
+import org.leafall.authservice.RestPage;
 import org.leafall.authservice.core.db.UserDbHelper;
 import org.leafall.authservice.core.utils.dto.UserDtoUtils;
 import org.leafall.authservice.dto.user.LoginResponseDto;
@@ -54,17 +55,17 @@ public class UserControllerTest extends BaseIntegrationTest {
         userDbHelper.saveUsers(usersCount);
 
         //when
-        var mvcResult = mockMvc.perform(get("/users"))
+        var mvcResult = mockMvc.perform(get("/users?page=1&size=" + usersCount))
                 .andExpect(status().isOk())
                 .andReturn();
 
         var bytes = mvcResult.getResponse().getContentAsByteArray();
         var response = objectMapper.readValue(
-                bytes, new TypeReference<List<UserResponseShortDto>>() {
+                bytes, new TypeReference<RestPage<UserResponseShortDto>>() {
                 });
 
         //then
-        assertEquals(usersCount, response.size());
+        assertEquals(usersCount, response.getTotalElements());
 
     }
 

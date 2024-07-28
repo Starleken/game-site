@@ -1,5 +1,6 @@
 package org.leafall.mainservice.controller;
 
+import jakarta.validation.constraints.Min;
 import org.leafall.mainservice.dto.game.GameCreateDto;
 import org.leafall.mainservice.dto.game.GameResponseDto;
 import org.leafall.mainservice.dto.game.GameResponseShortDto;
@@ -9,12 +10,11 @@ import org.leafall.mainservice.service.GameService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static org.leafall.mainservice.utils.LogUtils.getRequest;
 import static org.leafall.mainservice.utils.LogUtils.getResultRequest;
@@ -28,10 +28,11 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<GameResponseShortDto>> findAll() {
+    public ResponseEntity<Page<GameResponseShortDto>> findAll(@RequestParam(defaultValue = "1") @Min(1) Integer page,
+                                                              @RequestParam(defaultValue = "5") @Min(0) Integer size) {
         log.info(getRequest(GameEntity.class, "find all"));
-        var result = gameService.findAll();
-        log.info(getRequest(GameEntity.class, result.size()));
+        var result = gameService.findAll(page, size);
+        log.info(getRequest(GameEntity.class, (int)result.getTotalElements()));
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

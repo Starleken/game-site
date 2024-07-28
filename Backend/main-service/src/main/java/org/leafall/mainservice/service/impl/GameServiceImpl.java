@@ -9,6 +9,10 @@ import org.leafall.mainservice.repository.GameRepository;
 import org.leafall.mainservice.repository.GenreRepository;
 import org.leafall.mainservice.service.GameService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,8 +30,9 @@ public class GameServiceImpl implements GameService {
     private final FileService fileService;
 
     @Override
-    public List<GameResponseShortDto> findAll() {
-        var entities = gameRepository.findAll();
+    public Page<GameResponseShortDto> findAll(int page, int size) {
+        var pageable = PageRequest.of(page - 1, size);
+        var entities = gameRepository.findAll(pageable);
 
         var imageIds = entities.stream()
                         .map(GameEntity::getHeaderImage)
@@ -45,7 +50,7 @@ public class GameServiceImpl implements GameService {
             dtos.add(dto);
         }
 
-        return dtos;
+        return new PageImpl<>(dtos, pageable, entities.getTotalElements());
     }
 
     @Override
